@@ -1,0 +1,11 @@
+[user]
+  email = carlos.figueiredo87@gmail.com
+  name = Carlos Figueiredo
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore_global
+[alias]
+  ll = log --graph --pretty=format:\"%C(yellow)%h%Creset%d %Creset%s %C(bold blue)[%an]\"
+  l = log --graph --all --pretty=format:\"%C(yellow)%h%Creset%d %Creset%s %C(bold blue)[%an]\"
+[push]
+  default = simple
