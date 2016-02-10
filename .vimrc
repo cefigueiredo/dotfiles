@@ -29,15 +29,15 @@ Plugin 'dsawardekar/ember.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rking/ag.vim'
 
+
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsUsePythonVersion = 2
-
+"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" " If you want :UltiSnipsEdit to split your window.
+" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "bundle/vim-snippets/UltiSnips", "bundle/ultisnips-rspec/UltiSnips"]
@@ -63,7 +63,6 @@ set backspace=2
 set list
 set listchars=eol:¶
 set encoding=utf-8
-set nocompatible
 set laststatus=2
 set noshowmode
 
