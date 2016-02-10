@@ -21,7 +21,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'Trevoke/ultisnips-rspec'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-surround'
-"Plugin 'Lokaltog/vim-powerline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
@@ -77,8 +77,6 @@ set wildignore+=tags
 set wildignore+=bower_components
 set wildignore+=*.png,*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-"let g:Powerline_symbols = 'fancy'
-"
 
 let g:ag_working_path_mode="r"
 syntax on
@@ -105,6 +103,3 @@ augroup END
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
