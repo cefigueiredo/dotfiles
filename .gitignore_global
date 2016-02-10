@@ -1,4 +1,6 @@
 *.swp
 .envrc
+.ruby-version
+.ruby-gemset
 
 tags
