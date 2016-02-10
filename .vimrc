@@ -26,6 +26,8 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
 Plugin 'dsawardekar/ember.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'rking/ag.vim'
 
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -77,7 +79,9 @@ set wildignore+=bower_components
 set wildignore+=*.png,*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 "let g:Powerline_symbols = 'fancy'
+"
 
+let g:ag_working_path_mode="r"
 syntax on
 
 
