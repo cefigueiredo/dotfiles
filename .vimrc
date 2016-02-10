@@ -19,7 +19,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Trevoke/ultisnips-rspec'
-" Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-surround'
 "Plugin 'Lokaltog/vim-powerline'
@@ -27,13 +26,6 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
 Plugin 'dsawardekar/ember.vim'
-
-:set tags=./tags;
-let g:ctrlp_extensions=["tag"]
-"let g:easytags_dynamic_files=1
-let g:easytags_async=1
-let g:easytags_auto_update=1
-"let g:easytags_autorecurse = 1
 
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
