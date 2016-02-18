@@ -1,4 +1,4 @@
-set nocompatible
+  set nocompatible
 filetype off
 
 
@@ -22,6 +22,7 @@ Plugin 'Trevoke/ultisnips-rspec'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
@@ -29,7 +30,9 @@ Plugin 'dsawardekar/ember.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rking/ag.vim'
 
-
+" Vim-Airline
+"let g:airline_powerline_fonts=1
+set t_Co=256
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 "
