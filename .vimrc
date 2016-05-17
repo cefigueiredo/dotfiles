@@ -12,7 +12,6 @@ Plugin 'gmarik/Vundle.vim'
 
 "Other Plugins
 Plugin 'scrooloose/nerdtree'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
