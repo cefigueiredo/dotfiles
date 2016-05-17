@@ -13,7 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 "Other Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -44,7 +44,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "bundle/vim-snippets/UltiSnips", "bundle/ultisnips-rspec/UltiSnips"]
 
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -74,11 +73,8 @@ set shell=/bin/bash
 
 "ctrlp
 set wildignore+=*/tmp/*
-set wildignore+=vendor/bundle,vendor/ruby,node_modules,deps
-set wildignore+=tags
-set wildignore+=bower_components
 set wildignore+=*.png,*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = 'cd %s && git ls-files -co --exclude-standard'
 
 let g:ag_working_path_mode="r"
 syntax on
