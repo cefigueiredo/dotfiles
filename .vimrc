@@ -1,4 +1,4 @@
-  set nocompatible
+set nocompatible
 filetype off
 
 
@@ -21,7 +21,6 @@ Plugin 'Trevoke/ultisnips-rspec'
 Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
@@ -29,9 +28,7 @@ Plugin 'dsawardekar/ember.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rking/ag.vim'
 
-" Vim-Airline
-"let g:airline_powerline_fonts=1
-set t_Co=256
+
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 "
@@ -73,10 +70,17 @@ set shell=/bin/bash
 
 "ctrlp
 set wildignore+=*/tmp/*
-set wildignore+=*.png,*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip
-let g:ctrlp_user_command = 'cd %s && git ls-files -co --exclude-standard'
+set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = 'node_modules'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = {
+      \   'types': {
+      \     1: ['.git', 'git ls-files --cached --others --exclude-standard %s'],
+      \   },
+      \   'fallback': 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
+      \ } 
 
-let g:ag_working_path_mode="r"
+let g:ag_working_path_mode="ra"
 syntax on
 
 
