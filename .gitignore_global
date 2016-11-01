@@ -1,5 +1,6 @@
 *.swp
 .envrc
+.env
 .ruby-version
 .ruby-gemset
 
