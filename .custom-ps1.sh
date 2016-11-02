@@ -25,7 +25,7 @@ parse_git_branch() {
   fi
 
   if [[ $branch != "" ]]; then
-    if [[ $(git status 2> /dev/null | tail -n1) == "nothing to commit, working directory clean" ]]; then
+    if [[ $(git status 2> /dev/null | tail -n1 | grep -F "nothing to commit") ]]; then
       echo "${GREEN}$branch${COLOREND} "
     else
       echo "${RED}$branch${COLROEND} "
