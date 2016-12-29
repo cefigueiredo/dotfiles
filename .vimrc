@@ -63,6 +63,10 @@ set listchars=eol:¶
 set encoding=utf-8
 set laststatus=2
 set noshowmode
+set mouse=a
+
+set foldmethod=syntax
+set foldlevelstart=99
 
 let g:indent_guides_start_level = 2
 set background=dark
@@ -78,7 +82,7 @@ let g:ctrlp_user_command = {
       \     1: ['.git', 'git ls-files --cached --others --exclude-standard %s'],
       \   },
       \   'fallback': 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
-      \ } 
+      \ }
 
 let g:ag_working_path_mode="ra"
 syntax on
