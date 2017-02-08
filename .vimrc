@@ -26,6 +26,8 @@ Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
 Plugin 'dsawardekar/ember.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-haml'
+Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
 
 
@@ -93,7 +95,7 @@ map <F2> :NERDTreeToggle<CR>
 
 
 
-autocmd FileType ruby,eruby,javascript,jst,go autocmd BufWritePre <buffer> :%s/\s\+$//e 
+autocmd FileType ruby,eruby,javascript,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e 
 
 augroup BgHighlight
   autocmd!
