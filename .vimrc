@@ -27,6 +27,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'dsawardekar/ember.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rking/ag.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 
 " Ultisnips Trigger configuration. Do not use <tab> if you use
