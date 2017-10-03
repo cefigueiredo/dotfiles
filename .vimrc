@@ -29,7 +29,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
-Plugin 'kchmck/vim-coffee-script'
 
 
 " Ultisnips Trigger configuration. Do not use <tab> if you use
