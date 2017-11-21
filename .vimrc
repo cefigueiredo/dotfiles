@@ -96,7 +96,8 @@ syntax on
 
 map <F2> :NERDTreeToggle<CR>
 
-
+"Yank file_path to system buffer
+nmap <F4> :let @+ = expand("%")<CR>
 
 
 autocmd FileType ruby,eruby,javascript,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e 
