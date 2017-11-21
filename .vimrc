@@ -29,7 +29,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
-
+"Plugin 'mileszs/ack.vim'
 
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -87,6 +87,10 @@ let g:ctrlp_user_command = {
       \ }
 
 let g:ag_working_path_mode="ra"
+let g:ag_prog ='ag --vimgrep --smart-case'
+let g:ag_highlight=1
+"let g:ackprg = 'ag --vimgrep --smart-case' 
+
 syntax on
 
 
