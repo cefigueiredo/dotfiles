@@ -1,7 +1,6 @@
 set nocompatible
 filetype off
 
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -71,8 +70,10 @@ set foldmethod=syntax
 set foldlevelstart=99
 
 let g:indent_guides_start_level = 2
-set background=dark
+"set background=dark
 set shell=/bin/bash
+
+colorscheme molokai
 
 "ctrlp
 set wildignore+=*/tmp/*
