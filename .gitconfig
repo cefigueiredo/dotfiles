@@ -2,7 +2,7 @@
   email = carlos.figueiredo87@gmail.com
   name = Carlos Figueiredo
 [core]
-  editor = vim
+  editor = nvim
   excludesfile = ~/.gitignore_global
 [alias]
   ll = log --graph --pretty=format:\"%C(yellow)%h%Creset%d %Creset%s %C(bold blue)[%an]\"

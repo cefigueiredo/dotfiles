@@ -3,5 +3,5 @@
 .env
 .ruby-version
 .ruby-gemset
-
+.gitconfig
 tags

@@ -70,22 +70,22 @@ set foldmethod=syntax
 set foldlevelstart=99
 
 let g:indent_guides_start_level = 2
-"set background=dark
 set shell=/bin/bash
 
 colorscheme molokai
 
 "ctrlp
 set wildignore+=*/tmp/*
-set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip
+set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 let g:ctrlp_custom_ignore = 'node_modules'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = {
-      \   'types': {
-      \     1: ['.git', 'git ls-files --cached --others --exclude-standard %s'],
-      \   },
-      \   'fallback': 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
-      \ }
+"let g:ctrlp_user_command = {
+"      \   'types': {
+"      \     1: ['.git', 'git ls-files --cached --others --exclude-standard %s'],
+"      \   },
+"      \   'fallback': 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
+"      \ }
+let g:ctrlp_user_command = 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
 
 let g:ag_working_path_mode="ra"
 let g:ag_prog ='ag --vimgrep --smart-case'
@@ -101,7 +101,7 @@ map <F2> :NERDTreeToggle<CR>
 nmap <F4> :let @+ = expand("%")<CR>
 
 
-autocmd FileType ruby,eruby,javascript,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e 
+autocmd FileType ruby,eruby,elixir,exs,javascript,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e 
 
 augroup BgHighlight
   autocmd!
