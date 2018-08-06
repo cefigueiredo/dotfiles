@@ -27,8 +27,8 @@ Plugin 'dsawardekar/ember.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'rking/ag.vim'
-"Plugin 'mileszs/ack.vim'
+"Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -85,13 +85,19 @@ let g:ctrlp_working_path_mode = 'ra'
 "      \   },
 "      \   'fallback': 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
 "      \ }
-let g:ctrlp_user_command = 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
+let g:ctrlp_user_command = 'ag --vimgrep --ignore-case --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
 
-let g:ag_working_path_mode="ra"
-let g:ag_prog ='ag --vimgrep --smart-case'
-let g:ag_highlight=1
-"let g:ackprg = 'ag --vimgrep --smart-case' 
+"let g:ag_working_path_mode="ra"
+"let g:ag_prog ='ag --vimgrep --ignore-case --nobreak'
+"let g:ag_highlight=1
 
+let g:ackprg='ag --vimgrep --ignore-case'
+let g:ack_mappings = {
+      \   "h": "<C-W><CR>:exe 'wincmd ' (&splitbelow ? 'J' : 'K')<CR><C-W>p<C-W>J<C-W>p",
+      \   "H": "<C-W><CR>:exe 'wincmd ' (&splitbelow ? 'J' : 'K')<CR><C-W>p<C-W>J",
+      \   "v": "<C-W><CR>:exe 'wincmd ' (&splitright ? 'L' : 'H')<CR><C-W>p<C-W>J<C-W>p",
+      \   "gv": "<C-W><CR>:exe 'wincmd ' (&splitright ? 'L' : 'H')<CR><C-W>p<C-W>J"
+      \ }
 syntax on
 
 
