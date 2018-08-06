@@ -29,6 +29,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 "Plugin 'rking/ag.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'ap/vim-css-color'
 
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -72,7 +73,7 @@ set foldlevelstart=99
 let g:indent_guides_start_level = 2
 set shell=/bin/bash
 
-colorscheme molokai
+colorscheme monokai
 
 "ctrlp
 set wildignore+=*/tmp/*
