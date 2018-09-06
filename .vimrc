@@ -92,7 +92,7 @@ let g:ctrlp_user_command = 'ag --vimgrep --ignore-case --ignore "\.git$\|\.hg$\|
 "let g:ag_prog ='ag --vimgrep --ignore-case --nobreak'
 "let g:ag_highlight=1
 
-let g:ackprg='ag --vimgrep --ignore-case'
+let g:ackprg='ag --vimgrep --ignore-case --ignore "\.git$\|\.hg$\|\.svn$"'
 let g:ack_mappings = {
       \   "h": "<C-W><CR>:exe 'wincmd ' (&splitbelow ? 'J' : 'K')<CR><C-W>p<C-W>J<C-W>p",
       \   "H": "<C-W><CR>:exe 'wincmd ' (&splitbelow ? 'J' : 'K')<CR><C-W>p<C-W>J",
@@ -107,6 +107,7 @@ map <F2> :NERDTreeToggle<CR>
 "Yank file_path to system buffer
 nmap <F4> :let @+ = expand("%")<CR>
 
+tnoremap <Esc> <C-\><C-n>
 
 autocmd FileType ruby,eruby,elixir,exs,javascript,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e 
 
