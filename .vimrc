@@ -73,7 +73,7 @@ set foldlevelstart=99
 let g:indent_guides_start_level = 2
 set shell=/bin/bash
 
-colorscheme monokai
+colorscheme molokai
 
 "ctrlp
 set wildignore+=*/tmp/*
