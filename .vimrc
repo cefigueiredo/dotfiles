@@ -1,36 +1,31 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 "Other Plugins
-Plugin 'scrooloose/nerdtree'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Trevoke/ultisnips-rspec'
-Plugin 'xolox/vim-misc'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'tpope/vim-rails'
-Plugin 'pangloss/vim-javascript'
-Plugin 'dsawardekar/ember.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-haml'
-Plugin 'kchmck/vim-coffee-script'
-"Plugin 'rking/ag.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'ap/vim-css-color'
+Plug 'scrooloose/nerdtree'
+Plug 'flazz/vim-colorschemes'
+Plug 'airblade/vim-gitgutter'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Trevoke/ultisnips-rspec'
+Plug 'xolox/vim-misc'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'elixir-lang/vim-elixir'
+Plug 'tpope/vim-rails'
+Plug 'pangloss/vim-javascript'
+Plug 'dsawardekar/ember.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-haml'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mileszs/ack.vim'
+Plug 'ap/vim-css-color'
 
+call plug#end()
 " Ultisnips Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 "
@@ -43,8 +38,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "bundle/vim-snippets/UltiSnips", "bundle/ultisnips-rspec/UltiSnips"]
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 
 set splitright
