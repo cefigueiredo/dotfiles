@@ -1,6 +1,8 @@
 set nocompatible
 filetype off
 
+"set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/opt/fzf
 
 call plug#begin('~/.vim/plugged')
 
@@ -22,6 +24,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-haml'
 Plug 'kchmck/vim-coffee-script'
+"Plug 'rking/ag.vim'
+"
+"FZF Fuzzy File Searcher
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 Plug 'mileszs/ack.vim'
 Plug 'ap/vim-css-color'
 
@@ -60,26 +68,28 @@ set laststatus=2
 set noshowmode
 set mouse=a
 
+set colorcolumn=80
+
 set foldmethod=syntax
 set foldlevelstart=99
 
 let g:indent_guides_start_level = 2
 set shell=/bin/bash
 
-colorscheme molokai
+colorscheme monokai
 
 "ctrlp
 set wildignore+=*/tmp/*
 set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
-let g:ctrlp_custom_ignore = 'node_modules'
-let g:ctrlp_working_path_mode = 'r'
+"let g:ctrlp_custom_ignore = 'node_modules'
+"let g:ctrlp_working_path_mode = 'r'
 "let g:ctrlp_user_command = {
 "      \   'types': {
 "      \     1: ['.git', 'git ls-files --cached --others --exclude-standard %s'],
 "      \   },
 "      \   'fallback': 'ag --ignore-case --nogroup --nocolor --nobreak --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
 "      \ }
-let g:ctrlp_user_command = 'ag --vimgrep --ignore-case --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
+"let g:ctrlp_user_command = 'ag --vimgrep --ignore-case --ignore "\.git$\|\.hg$\|\.svn$" -g "" %s'
 
 "let g:ag_working_path_mode="ra"
 "let g:ag_prog ='ag --vimgrep --ignore-case --nobreak'
@@ -94,15 +104,26 @@ let g:ack_mappings = {
       \ }
 syntax on
 
+let g:airline_inactive_collapse=1
+let g:airline#extensions#branch#displayed_head_limit=15
 
 map <F2> :NERDTreeToggle<CR>
 
 "Yank file_path to system buffer
 nmap <F4> :let @+ = expand("%")<CR>
 
-tnoremap <Esc> <C-\><C-n>
+"fzf
+let g:fzf_command_prefix="Fzf"
+nmap <C-f> :FZF<CR>
+nmap <C-p> :FZF<CR>
 
-autocmd FileType ruby,eruby,elixir,exs,javascript,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e 
+let g:python3_host_prog="/Users/carlos/.virtualenvs/neovim/bin/python"
+
+if exists(':tnoremap')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
+autocmd FileType ruby,eruby,python,elixir,exs,javascript,java,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e 
 
 augroup BgHighlight
   autocmd!
