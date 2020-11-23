@@ -5,3 +5,7 @@
 .ruby-gemset
 .gitconfig
 tags
+node_modules
+*.orig
+.DS_Store
+.nvmrc
