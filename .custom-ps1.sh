@@ -8,7 +8,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=yes
 
 # Responsive Prompt
 parse_git_branch() {
-  if [[ -f "$HOME/.git-completion.bash" ]]; then
+  if [[ -n $BASH_VERSION ]] && [[ -f "$HOME/.git-completion.bash" ]]; then
     branch=`__git_ps1 "%s"`
   else
     ref=$(git-symbolic-ref HEAD 2> /dev/null) || return
