@@ -5,7 +5,7 @@ source $HOME/.custom-ps1.sh
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export EDITOR=nvim
 
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rg --hidden --iglob !.git -l ""'
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
