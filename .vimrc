@@ -117,7 +117,7 @@ let g:fzf_command_prefix="Fzf"
 nmap <C-f> :FZF<CR>
 nmap <C-p> :FZF<CR>
 
-let g:python3_host_prog="/Users/carlos/.virtualenvs/neovim/bin/python"
+let g:python3_host_prog="~/.virtualenvs/neovim/bin/python"
 
 if exists(':tnoremap')
   tnoremap <Esc> <C-\><C-n>

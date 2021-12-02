@@ -1,6 +1,8 @@
-source $HOME/.git-completion.bash
-source $HOME/.git-prompt.sh
-source $HOME/.custom-ps1.sh
+export DOTFILES_PATH="$HOME/dev/dotfiles"
+
+source $DOTFILES_PATH/.git-completion.bash
+source $DOTFILES_PATH/.git-prompt.sh
+source $DOTFILES_PATH/.custom-ps1.sh
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export EDITOR=nvim
