@@ -108,6 +108,7 @@ let g:airline_inactive_collapse=1
 let g:airline#extensions#branch#displayed_head_limit=15
 
 map <F2> :NERDTreeToggle<CR>
+map <F3> :NERDTreeFind<CR>
 
 "Yank file_path to system buffer
 nmap <F4> :let @+ = expand("%")<CR>
@@ -117,7 +118,7 @@ let g:fzf_command_prefix="Fzf"
 nmap <C-f> :FZF<CR>
 nmap <C-p> :FZF<CR>
 
-let g:python3_host_prog="~/.virtualenvs/neovim/bin/python"
+"let g:python3_host_prog="/Users/carlos/.virtualenvs/neovim/bin/python"
 
 if exists(':tnoremap')
   tnoremap <Esc> <C-\><C-n>

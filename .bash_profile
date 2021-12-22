@@ -17,3 +17,9 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 eval "$(direnv hook $0)";
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/Users/carlos/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
+
+. /usr/local/opt/asdf/asdf.sh

@@ -10,5 +10,11 @@
 [push]
   default = simple
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = vimdiff
+  conflictstyle = diff3
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg
+[include]
+  path = gitconfig.secret

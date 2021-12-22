@@ -1,5 +1,5 @@
 *.swp
-.envrc
+.envrc*
 .env
 .ruby-version
 .ruby-gemset
@@ -9,3 +9,4 @@ node_modules
 *.orig
 .DS_Store
 .nvmrc
+tmp/*
