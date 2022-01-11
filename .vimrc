@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 "set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=/usr/local/opt/fzf
+"set rtp+=/usr/homebrew/opt/fzf
 
 call plug#begin('~/.vim/plugged')
 
@@ -27,11 +27,13 @@ Plug 'kchmck/vim-coffee-script'
 "Plug 'rking/ag.vim'
 "
 "FZF Fuzzy File Searcher
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'mileszs/ack.vim'
 Plug 'ap/vim-css-color'
+
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 " Ultisnips Trigger configuration. Do not use <tab> if you use
