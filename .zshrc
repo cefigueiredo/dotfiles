@@ -3,6 +3,18 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files'
 
+fpath=(~/.zsh $fpath)
+
+autoload -Uz compinit && compinit
+autoload -Uz colors && colors
+
+setopt prompt_subst
+
+zstyle ':completion:*:*:git:*' script $DOTFILES_PATH/.git-completion.bash
+
+source $DOTFILES_PATH/.git-prompt.sh
+source $DOTFILES_PATH/.custom-ps1.sh
+
 [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
 # [[ -s "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

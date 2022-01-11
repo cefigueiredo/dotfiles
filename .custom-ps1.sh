@@ -1,14 +1,24 @@
-GREEN="\[\e[0;32m\]"
-BLUE="\[\e[0;34m\]"
-RED="\[\e[0;31m\]"
-YELLOW="\[\e[0;33m\]"
-COLOREND="\[\e[00m\]"
+if [[ -n ${ZSH_VERSION-} ]]; then
+  local GREEN="%F{green}"
+  local BLUE="%F{blue}"
+  local RED="%F{red}"
+  local YELLOW="%F{yellow}"
+  local COLOREND="%F{white}"
+else
+  local GREEN="\[\e[0;32m\]"
+  local BLUE="\[\e[0;34m\]"
+  local RED="\[\e[0;31m\]"
+  local YELLOW="\[\e[0;33m\]"
+  local COLOREND="\[\e[00m\]"
+fi
 
 export GIT_PS1_SHOWUNTRACKEDFILES=yes
 
 # Responsive Prompt
 parse_git_branch() {
-  if [[ -n $BASH_VERSION ]] && [[ -f "$HOME/.git-completion.bash" ]]; then
+  if [[ -n $BASH_VERSION ]] && [[ -f "$DOTFILES_PATH/.git-completion.bash" ]]; then
+    branch=`__git_ps1 "%s"`
+  elif [[ -n $ZSH_VERSION ]] && [[ -f "$DOTFILES_PATH/.git-completion.zsh" ]]; then
     branch=`__git_ps1 "%s"`
   else
     ref=$(git-symbolic-ref HEAD 2> /dev/null) || return
@@ -26,9 +36,9 @@ parse_git_branch() {
 
   if [[ $branch != "" ]]; then
     if [[ $(git status 2> /dev/null | tail -n1 | grep -F "nothing to commit") ]]; then
-      echo "${GREEN}$branch${COLOREND} "
+      echo -e "${GREEN}$branch${COLOREND} "
     else
-      echo "${RED}$branch${COLROEND} "
+      echo -e "${RED}$branch${COLROEND} "
     fi
   fi
 }
@@ -92,7 +102,7 @@ parse_remote_state() {
   fi
 }
 
-prompt() {
+bash_prompt() {
   if [[ $? -eq 0 ]]; then
     exit_status="${BLUE}›${COLOREND} "
   else
@@ -102,4 +112,18 @@ prompt() {
   PS1="\u $(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$ "
 }
 
-PROMPT_COMMAND=prompt
+zsh_prompt() {
+  if [[ $? -eq 0 ]]; then
+    exit_status="${BLUE}›${COLOREND} "
+  else
+    exit_status="${RED}›${COLOREND} "
+  fi
+
+  echo -e "%n $(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$ "
+}
+
+if [[ -n $ZSH_VERSION ]]; then
+  precmd() { PROMPT="$(zsh_prompt)%" }
+else
+  PROMPT_COMMAND=bash_prompt
+fi
