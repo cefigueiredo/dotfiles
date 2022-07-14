@@ -81,7 +81,7 @@ set foldmethod=syntax
 set foldlevelstart=99
 
 let g:indent_guides_start_level = 2
-set shell=/bin/bash
+set shell=$SHELL
 
 colorscheme monokai
 
@@ -130,6 +130,8 @@ nmap <C-p> :FZF<CR>
 if exists(':tnoremap')
   tnoremap <Esc> <C-\><C-n>
 endif
+
+command Bterm bo 10sp +term
 
 if has('nvim')
 lua <<EOF
@@ -240,7 +242,12 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['solargraph'].setup {
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+      commandPath = os.execute("chruby-exec 3.1.2 -- which solargraph"),
+      diagnostics = true,
+      completion = true
+    }
   }
 EOF
 end

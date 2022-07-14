@@ -4,6 +4,7 @@
 .ruby-version
 .ruby-gemset
 .gitconfig
+.irb_history
 tags
 node_modules
 *.orig

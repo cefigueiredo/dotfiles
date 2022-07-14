@@ -8,12 +8,29 @@ fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 
+bindkey -v # Enable Vim mode
+
+## setup PS1/Prompt to show git state
 setopt prompt_subst
 
 zstyle ':completion:*:*:git:*' script $DOTFILES_PATH/.git-completion.bash
 
 source $DOTFILES_PATH/.git-prompt.sh
 source $DOTFILES_PATH/.custom-ps1.sh
+###
+
+## options for history
+setopt share_history # share history accross multiple sessions
+setopt append_history
+setopt inc_append_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_find_no_dups # avoid dups when searching history w\ <C+R>
+setopt hist_reduce_blanks
+setopt hist_verify # show command substitued by "!!" before execute
+
+setopt correct
+setopt correct_all
 
 [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 

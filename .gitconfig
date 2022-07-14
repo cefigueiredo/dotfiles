@@ -9,6 +9,7 @@
   l = log --graph --all --pretty=format:\"%C(yellow)%h%Creset%d %Creset%s %C(bold blue)[%an]\"
 [push]
   default = simple
+  autoSetupRemote = true
 [merge]
   tool = vimdiff
   conflictstyle = diff3
@@ -17,4 +18,4 @@
 [gpg]
   program = gpg
 [include]
-  path = gitconfig.secret
+  path = .gitconfig.secret
