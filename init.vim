@@ -17,7 +17,7 @@ call plug#begin()
   Plug 'neovim/nvim-lspconfig'
   Plug 'quangnguyen30192/cmp-nvim-ultisnips'
   Plug 'rafamadriz/friendly-snippets'
-  Plug 'sirver/ultisnips' 
+  Plug 'sirver/ultisnips'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-surround'
