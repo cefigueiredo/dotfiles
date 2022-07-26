@@ -1,6 +1,6 @@
 call plug#begin()
   Plug 'dracula/vim', { 'as': 'dracula' }
-  "Plug 'preservim/nerdtree'
+  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
@@ -57,6 +57,7 @@ set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 
 lua require 'lua.user.lsp_config'
 lua require 'lua.user.cmp'
+lua require 'lua.user.nvim-tree'
 
 ""General Mappings
 
@@ -71,9 +72,9 @@ let g:fzf_command_prefix="Fzf"
 nmap <C-f> :FZF<CR>
 nmap <C-p> :FZF<CR>
 
-"  NerdTree
-nnoremap <F2> :NERDTreeToggle<CR>
-nnoremap <F3> :NERDTreeFind<CR>
+"  nvim-tree.lua
+nnoremap <F2> :NvimTreeToggle<CR>
+nnoremap <F3> :NvimTreeFindFile<CR>
 
 "  <Esc> to exit terminal insert mode
 tnoremap <Esc> <C-\><C-n>
