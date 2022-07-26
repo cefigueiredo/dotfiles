@@ -12,7 +12,14 @@ nvim_tree.setup({
       }
     }
   },
+  filters = {
+    dotfiles = true,
+    custom = {"^\\.git"}
+  },
   renderer= {
+    group_empty = true,
+    highlight_opened_files = "all",
+
     icons = {
       glyphs = {
         git = {
