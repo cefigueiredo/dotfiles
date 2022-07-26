@@ -19,7 +19,6 @@ nvim_tree.setup({
   renderer= {
     group_empty = true,
     highlight_opened_files = "all",
-
     icons = {
       glyphs = {
         git = {
