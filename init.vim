@@ -34,7 +34,8 @@ syntax on
 colorscheme dracula
 
 set autoindent
-set background=dark
+"set background=dark
+set guicursor=n-v-c-sm:blinkon200-blinkwait100,i-ci-ve:ver25-blinkon200-blinkwait100,r-cr-o:hor20-blinkon200-blinkwait100
 set backspace=2
 set colorcolumn=80
 set clipboard=unnamedplus
@@ -64,6 +65,8 @@ lua require 'user.cmp'
 lua require 'user.nvim-tree'
 
 ""General Mappings
+
+autocmd FileType ruby,eruby,python,elixir,exs,javascript,java,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 "  Open 10lines console at bottom
 command Bterm bo 10sp +term
