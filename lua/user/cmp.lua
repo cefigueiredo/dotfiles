@@ -17,9 +17,9 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete({}),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp.mapping(
       function(fallback) cmp_ultisnips_mappings.expand_or_jump_forwards(fallback) end,
       {"i", "s"}
@@ -30,10 +30,9 @@ cmp.setup({
     )
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    -- { name = 'vsnip' },
     { name = 'ultisnips' },
-  }, { 
+    { name = 'nvim_lsp' },
+  }, {
     { name = 'buffer', keyword_length = 5 },
   })
 })
