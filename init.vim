@@ -9,11 +9,8 @@ call plug#begin()
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/nvim-cmp'
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'mileszs/ack.vim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'quangnguyen30192/cmp-nvim-ultisnips'
   Plug 'rafamadriz/friendly-snippets'
@@ -24,6 +21,8 @@ call plug#begin()
   Plug 'trevoke/ultisnips-rspec'
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
 
 " nvim-cmp settings
@@ -84,10 +83,8 @@ vmap <K> :m '<-2<CR>gv=gv
 nmap <J> :m .+1<CR>==
 vmap <J> :m '>+1<CR>gv=gv
 
-"  fzf
-let g:fzf_command_prefix="Fzf"
-nmap <C-f> :FZF<CR>
-nmap <C-p> :FZF<CR>
+nmap <C-p> :Telescope find_files<CR>
+nmap <C-f> :Telescope live_grep<CR>
 
 "  nvim-tree.lua
 nnoremap <F2> :NvimTreeToggle<CR>
@@ -95,12 +92,3 @@ nnoremap <F3> :NvimTreeFindFile<CR>
 
 "  <Esc> to exit terminal insert mode
 tnoremap <Esc> <C-\><C-n>
-
-" Ack
-let g:ackprg='ag --vimgrep --ignore-case --ignore "\.git$\|\.hg$\|\.svn$"'
-let g:ack_mappings = {
-      \   "h": "<C-W><CR>:exe 'wincmd ' (&splitbelow ? 'J' : 'K')<CR><C-W>p<C-W>J<C-W>p",
-      \   "H": "<C-W><CR>:exe 'wincmd ' (&splitbelow ? 'J' : 'K')<CR><C-W>p<C-W>J",
-      \   "v": "<C-W><CR>:exe 'wincmd ' (&splitright ? 'L' : 'H')<CR><C-W>p<C-W>J<C-W>p",
-      \   "gv": "<C-W><CR>:exe 'wincmd ' (&splitright ? 'L' : 'H')<CR><C-W>p<C-W>J"
-      \ }
