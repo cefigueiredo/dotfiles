@@ -69,10 +69,20 @@ lua require 'user.nvim-tree'
 autocmd FileType ruby,eruby,python,elixir,exs,javascript,java,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 "  Open 10lines console at bottom
-command Bterm bo 10sp +term
+augroup BTERM
+  command! Bterm bo 10sp +term
+augroup END
 
 "  Yank file_path to system buffer
 nmap <F4> :let @+ = expand("%")<CR>
+
+"  Move lines up
+nmap <K> :m .-2<CR>==
+vmap <K> :m '<-2<CR>gv=gv
+
+"  Move lines down
+nmap <J> :m .+1<CR>==
+vmap <J> :m '>+1<CR>gv=gv
 
 "  fzf
 let g:fzf_command_prefix="Fzf"
