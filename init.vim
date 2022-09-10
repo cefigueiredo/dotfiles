@@ -59,6 +59,9 @@ set laststatus=1 " 1 = show status bar if >= 2 windows; 2 = always
 set wildignore+=*/tmp/* " ignore conditions for for ctr-p/fzf
 set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 
+" background transparent
+hi Normal guibg=None
+
 lua require 'user.lsp_config'
 lua require 'user.cmp'
 lua require 'user.nvim-tree'
