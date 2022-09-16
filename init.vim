@@ -58,6 +58,7 @@ set termguicolors
 set laststatus=1 " 1 = show status bar if >= 2 windows; 2 = always
 set wildignore+=*/tmp/* " ignore conditions for for ctr-p/fzf
 set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
+set nowrap
 
 " background transparent
 hi Normal guibg=None
