@@ -4,12 +4,12 @@ if [[ -n ${ZSH_VERSION-} ]]; then
   local RED="%F{red}"
   local YELLOW="%F{yellow}"
   local COLOREND="%F{white}"
-else
-  local GREEN="\[\e[0;32m\]"
-  local BLUE="\[\e[0;34m\]"
-  local RED="\[\e[0;31m\]"
-  local YELLOW="\[\e[0;33m\]"
-  local COLOREND="\[\e[00m\]"
+elif [[ -n $BASH_VERSION ]]; then
+  GREEN="\[\e[0;32m\]"
+  BLUE="\[\e[0;34m\]"
+  RED="\[\e[0;31m\]"
+  YELLOW="\[\e[0;33m\]"
+  COLOREND="\[\e[00m\]"
 fi
 
 export GIT_PS1_SHOWUNTRACKEDFILES=yes
@@ -123,7 +123,11 @@ zsh_prompt() {
 }
 
 if [[ -n $ZSH_VERSION ]]; then
-  precmd() { PROMPT="$(zsh_prompt)%" }
-else
+  precmd() {
+    PROMPT="$(zsh_prompt)%"
+  }
+fi
+
+if [[ -n ${BASH_VERSION} ]]; then
   PROMPT_COMMAND=bash_prompt
 fi
