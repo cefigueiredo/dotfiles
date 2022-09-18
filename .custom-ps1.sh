@@ -109,7 +109,7 @@ bash_prompt() {
     exit_status="${RED}›${COLOREND} "
   fi
 
-  PS1="\u $(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$ "
+  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$ "
 }
 
 zsh_prompt() {
