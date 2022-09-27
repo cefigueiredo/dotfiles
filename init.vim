@@ -80,10 +80,6 @@ augroup BTERM
   command! Bterm bo 10sp +term
 augroup END
 
-
-" remove trailing spaces
-autocmd FileType ruby,eruby,python,elixir,exs,javascript,java,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
-
 "  Yank file_path to system buffer
 nmap <F4> :let @+ = expand("%")<CR>
 
