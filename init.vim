@@ -80,6 +80,10 @@ augroup BTERM
   command! Bterm bo 10sp +term
 augroup END
 
+
+" remove trailing spaces
+autocmd FileType ruby,eruby,python,elixir,exs,javascript,java,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 "  Yank file_path to system buffer
 nmap <F4> :let @+ = expand("%")<CR>
 
@@ -100,3 +104,12 @@ nnoremap <F3> :NvimTreeFindFile<CR>
 
 "  <Esc> to exit terminal insert mode
 tnoremap <Esc> <C-\><C-n>
+
+" vim-airline
+"let g:airline#extensions#branch#format = 'WrapbookCustomBranchName'
+"function! WrapbookCustomBranchName(name)
+"  let shortcut_ticket = matchstr(name, '\c\w\+//')
+"
+"  check :h /\zs /\ze /\c
+"
+"endfunction

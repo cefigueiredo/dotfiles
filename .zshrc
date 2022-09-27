@@ -2,6 +2,7 @@ export DOTFILES_PATH="$HOME/dev/dotfiles"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files'
+export DISABLE_SPRING=true
 
 fpath=(~/.zsh $fpath)
 
@@ -30,7 +31,7 @@ setopt hist_reduce_blanks
 setopt hist_verify # show command substitued by "!!" before execute
 
 setopt correct
-setopt correct_all
+unsetopt correct_all
 
 [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
