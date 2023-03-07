@@ -22,14 +22,20 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 call plug#end()
+
+lua require 'user.cmp'
+lua require 'user.tree-sitter'
+lua require 'user.lsp_config'
+lua require 'user.nvim-tree'
 
 " nvim-cmp settings
 set completeopt=menu,menuone,noselect
 
 " General settings
-syntax on
+" syntax on
 colorscheme dracula
 
 set autoindent
@@ -41,7 +47,8 @@ set clipboard=unnamedplus
 set encoding=utf-8
 set expandtab
 set foldlevelstart=99
-set foldmethod=indent " Test syntax after `syntax on` setting
+set foldmethod=expr " Test syntax after `syntax on` setting
+set foldexpr=nvim_treesitter#foldexpr()
 set list " list and listchar - show special characters like: \n
 set listchars=eol:¶
 set mouse=a
@@ -62,10 +69,6 @@ set nowrap
 
 " background transparent
 hi Normal guibg=None
-
-lua require 'user.lsp_config'
-lua require 'user.cmp'
-lua require 'user.nvim-tree'
 
 ""General Mappings
 
