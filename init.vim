@@ -56,6 +56,8 @@ set nobackup
 set noshowmode
 set noswapfile
 set number
+set relativenumber
+set cursorline
 set ruler
 set shiftwidth=2
 set splitbelow
