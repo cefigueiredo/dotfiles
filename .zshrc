@@ -33,10 +33,16 @@ setopt hist_verify # show command substitued by "!!" before execute
 setopt correct
 unsetopt correct_all
 
+alias prune-orphan-branches="git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
+alias list-orphan-branches="git fetch -p && git branch -vv | awk '/: gone]/{print $1}'"
+alias rspec="bundle exec rspec"
+
 [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
 # [[ -s "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[ -n "$(brew --prefix postgresql@13)" ] && export PATH="$(brew --prefix postgresql@13)/bin:$PATH"
+[ -n "$(brew --prefix node@16)" ] && export PATH="$(brew --prefix node@16)/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
