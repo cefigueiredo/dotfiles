@@ -1,5 +1,4 @@
 [user]
-  email = carlos.figueiredo87@gmail.com
   name = Carlos Figueiredo
 [core]
   editor = nvim
@@ -11,7 +10,7 @@
   default = simple
   autoSetupRemote = true
 [merge]
-  tool = vimdiff
+  tool = nvimdiff
   conflictstyle = diff3
 [commit]
   gpgsign = true
