@@ -11,7 +11,9 @@
   autoSetupRemote = true
 [merge]
   tool = nvimdiff
-  conflictstyle = diff3
+  conflictStype = zdiff3
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED + BASE,LOCAL + BASE,REMOTE + (LOCAL/BASE/REMOTE),MERGED"
 [commit]
   gpgsign = true
 [gpg]
