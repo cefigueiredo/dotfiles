@@ -37,19 +37,20 @@ alias prune-orphan-branches="git fetch -p && git branch -vv | awk '/: gone]/{pri
 alias list-orphan-branches="git fetch -p && git branch -vv | awk '/: gone]/{print $1}'"
 alias rspec="bundle exec rspec"
 
-[ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
-
 # [[ -s "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[ -n "$(brew --prefix postgresql@13)" ] && export PATH="$(brew --prefix postgresql@13)/bin:$PATH"
-[ -n "$(brew --prefix node@16)" ] && export PATH="$(brew --prefix node@16)/bin:$PATH"
+
+if [[ $(uname) == "Darwin" ]]; then
+  [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+  [ -n "$(brew --prefix postgresql@13)" ] && export PATH="$(brew --prefix postgresql@13)/bin:$PATH"
+  [ -n "$(brew --prefix node@16)" ] && export PATH="$(brew --prefix node@16)/bin:$PATH"
+  # chruby
+  [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/chruby.sh"
+  [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/auto.sh"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# chruby
-[[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/chruby.sh"
-[[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/auto.sh"
 
 [[ -n "$(which direnv)" ]] && eval "$(direnv hook zsh)";
