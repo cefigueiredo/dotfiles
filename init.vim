@@ -38,7 +38,7 @@ set completeopt=menu,menuone,noselect
 " syntax on
 colorscheme dracula
 
-"set autoindent
+set autoindent
 "set background=dark
 set guicursor=n-v-c-sm:blinkon200-blinkwait100,i-ci-ve:ver25-blinkon200-blinkwait100,r-cr-o:hor20-blinkon200-blinkwait100
 set backspace=2

@@ -10,7 +10,7 @@ require'nvim-treesitter.configs'.setup{
     "elixir",
   },
 
-  indent = { enable = true },
+  indent = { enable = false },
   highlight={
     enable=true,
     additional_vim_regex_highlighting = false,
