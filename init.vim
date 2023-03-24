@@ -25,6 +25,7 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
+  Plug 'nvim-treesitter/playground'
 call plug#end()
 
 lua require 'user.cmp'
