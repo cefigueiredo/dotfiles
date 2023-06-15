@@ -4,14 +4,10 @@ if not status_ok then
   return
 end
 
+local on_attach = require("nvim-tree-on-attach")
+
 nvim_tree.setup({
-  view = {
-    mappings = {
-      list = {
-        { key = {"g?", "?"}, action = "toggle_help" }
-      }
-    }
-  },
+  on_attach = on_attach,
   filters = {
     dotfiles = true,
     custom = {"^\\.git"}
