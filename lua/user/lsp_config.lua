@@ -25,7 +25,7 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('', '<leader>f', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float({scope="line", border="rounded"})<CR>', opts)
+  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float({scope="line", border="rounded"})<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
@@ -61,6 +61,7 @@ nvim_lsp['lua_ls'].setup {
 }
 
 nvim_lsp['ruby_ls'].setup {
+  capabilities = capabilities,
   on_attach = function(client, bufnr)
     pcall(on_attach, client, bufnr)
 
