@@ -3,6 +3,7 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files'
 export DISABLE_SPRING=true
+export RUBOCOP_OPTS="--no-server"
 
 fpath=(~/.zsh $fpath)
 
@@ -43,7 +44,7 @@ alias rspec="bundle exec rspec"
 if [[ $(uname) == "Darwin" ]]; then
   [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
   [ -n "$(brew --prefix postgresql@13)" ] && export PATH="$(brew --prefix postgresql@13)/bin:$PATH"
-  [ -n "$(brew --prefix node@16)" ] && export PATH="$(brew --prefix node@16)/bin:$PATH"
+  [ -n "$(brew --prefix node@18)" ] && export PATH="$(brew --prefix node@18)/bin:$PATH"
   # chruby
   [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/chruby.sh"
   [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/auto.sh"
