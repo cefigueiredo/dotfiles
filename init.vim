@@ -26,6 +26,7 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
   Plug 'nvim-treesitter/playground'
+  Plug 'godlygeek/tabular'
 call plug#end()
 
 lua require 'user.cmp'
