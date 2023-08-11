@@ -65,6 +65,10 @@ nvim_lsp['ruby_ls'].setup {
   on_attach = function(client, bufnr)
     pcall(on_attach, client, bufnr)
 
+    if require("vim.lsp.diagnostic")._enable then
+      return
+    end
+
     local callback = function()
       local params = vim.lsp.util.make_text_document_params(bufnr)
 
