@@ -59,7 +59,6 @@ set nobackup
 set noshowmode
 set noswapfile
 set number
-set relativenumber
 set cursorline
 set ruler
 set shiftwidth=2
@@ -77,6 +76,12 @@ set updatetime=100
 hi Normal guibg=None
 
 ""General Mappings
+
+augroup linenumbers
+  autocmd FocusGained,BufEnter * : setlocal relativenumber
+  autocmd BufLeave,BufAdd * : setlocal norelativenumber
+  autocmd FocusLost * : set norelativenumber
+augroup end
 
 autocmd FileType ruby,eruby,python,elixir,exs,javascript,java,jst,go,html,haml,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
 
