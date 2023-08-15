@@ -111,6 +111,10 @@ nnoremap <F3> :NvimTreeFindFile<CR>
 "  <Esc> to exit terminal insert mode
 tnoremap <Esc> <C-\><C-n>
 
+nnoremap <leader>ciw :set iskeyword-=_<cr>diw:set iskeyword+=_<cr>i
+nnoremap <leader>cw :set iskeyword-=_<cr>dw:set iskeyword+=_<cr>i
+nnoremap <leader>diw :set iskeyword-=_<cr>diw:set iskeyword+=_<cr>
+nnoremap <leader>dw :set iskeyword-=_<cr>dw:set iskeyword+=_<cr>
 " vim-airline
 "let g:airline#extensions#branch#format = 'WrapbookCustomBranchName'
 "function! WrapbookCustomBranchName(name)
