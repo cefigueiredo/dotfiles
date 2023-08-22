@@ -96,13 +96,13 @@ augroup END
 "  Yank file_path to system buffer
 nmap <F4> :let @+ = expand("%")<CR>
 
-"  Move lines up
-nmap K :m .-2<CR>==
-vmap K :m '<-2<CR>gv=gv
-
-"  Move lines down
-nmap J :m .+1<CR>==
-vmap J :m '>+1<CR>gv=gv
+""  Move lines up
+"nmap K :m .-2<CR>==
+"vmap K :m '<-2<CR>gv=gv
+"
+""  Move lines down
+"nmap J :m .+1<CR>==
+"vmap J :m '>+1<CR>gv=gv
 
 nmap <C-p> :Telescope find_files<CR>
 nmap <C-f> :Telescope live_grep<CR>
