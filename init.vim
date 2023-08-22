@@ -50,8 +50,6 @@ set clipboard=unnamedplus
 set encoding=utf-8
 set expandtab
 set foldlevelstart=99
-set foldmethod=expr " Test syntax after `syntax on` setting
-set foldexpr=nvim_treesitter#foldexpr()
 set list " list and listchar - show special characters like: \n
 set listchars=eol:¶
 set mouse=a
@@ -71,6 +69,11 @@ set wildignore+=*/tmp/* " ignore conditions for for ctr-p/fzf
 set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 set nowrap
 set updatetime=100
+
+" Treesitter folding
+set foldmethod=expr " Test syntax after `syntax on` setting
+set foldexpr=nvim_treesitter#foldexpr()
+autocmd BufReadPost,FileReadPost * normal zR
 
 " background transparent
 hi Normal guibg=None
