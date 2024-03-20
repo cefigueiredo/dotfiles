@@ -22,7 +22,8 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+  Plug 'nvim-telescope/telescope-live-grep-args.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
   Plug 'nvim-treesitter/playground'
@@ -30,6 +31,7 @@ call plug#begin()
 call plug#end()
 
 lua require 'user.cmp'
+lua require 'user.telescope'
 lua require 'user.tree-sitter'
 lua require 'user.lsp_config'
 lua require 'user.nvim-tree'
@@ -100,9 +102,6 @@ vmap K :m '<-2<CR>gv=gv
 "  Move lines down
 nmap J :m .+1<CR>==
 vmap J :m '>+1<CR>gv=gv
-
-nmap <C-p> :Telescope find_files<CR>
-nmap <C-f> :Telescope live_grep<CR>
 
 "  nvim-tree.lua
 nnoremap <F2> :NvimTreeToggle<CR>
