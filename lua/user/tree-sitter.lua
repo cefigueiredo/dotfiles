@@ -1,4 +1,9 @@
-require'nvim-treesitter.configs'.setup{
+local treesitter_ok, treesitter_config = pcall(require, "nvim-treesitter.config")
+if not treesitter_ok then
+  return
+end
+
+treesitter_config.setup{
   ensure_installed = {
     "c",
     "elixir",
@@ -39,3 +44,7 @@ require'nvim-treesitter.configs'.setup{
     enable = true,
   },
 }
+
+vim.o.foldmethod = 'expr'
+vim.o.foldtext = 'v:lua.vim.treesitter.foldtext()'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

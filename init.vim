@@ -52,8 +52,6 @@ set clipboard=unnamedplus
 set encoding=utf-8
 set expandtab
 set foldlevelstart=99
-set foldmethod=expr " Test syntax after `syntax on` setting
-set foldexpr=nvim_treesitter#foldexpr()
 set list " list and listchar - show special characters like: \n
 set listchars=eol:¶
 set mouse=a
