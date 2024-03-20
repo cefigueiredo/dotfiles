@@ -28,6 +28,7 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
   Plug 'nvim-treesitter/playground'
   Plug 'godlygeek/tabular'
+  Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
 lua require 'user.cmp'
@@ -35,6 +36,7 @@ lua require 'user.telescope'
 lua require 'user.tree-sitter'
 lua require 'user.lsp_config'
 lua require 'user.nvim-tree'
+lua require 'user.indent-blankline'
 
 " nvim-cmp settings
 set completeopt=menu,menuone,noselect
@@ -61,6 +63,7 @@ set noswapfile
 set number
 set cursorline
 set ruler
+set shiftround
 set shiftwidth=2
 set splitbelow
 set splitright
@@ -71,6 +74,10 @@ set wildignore+=*/tmp/* " ignore conditions for for ctr-p/fzf
 set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 set nowrap
 set updatetime=100
+set scrolloff=3
+
+" Treesitter folding
+autocmd BufReadPost,FileReadPost * normal zR
 
 " background transparent
 hi Normal guibg=None

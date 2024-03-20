@@ -1,6 +1,10 @@
-local nvim_lsp = require('lspconfig')
+local start_ok, nvim_lsp = pcall(require, 'lspconfig')
 
-local on_attach = function(_, bufnr)
+if not start_ok then
+  return
+end
+
+local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -11,9 +15,9 @@ local on_attach = function(_, bufnr)
   -- lsp mappings
   local opts = { noremap = true, silent = true }
 
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition({ reuse_win = true })<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gdc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gdf', '<cmd>lua vim.lsp.buf.definition({ reuse_win = true })<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -28,10 +32,14 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float({scope="line", border="rounded"})<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint(bufnr, true)
+  end
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
---local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 local flags = { debounce_text_changes = 150, }
 
 nvim_lsp['lua_ls'].setup {
@@ -62,6 +70,7 @@ nvim_lsp['lua_ls'].setup {
 
 nvim_lsp['ruby_ls'].setup {
   capabilities = capabilities,
+
   on_attach = function(client, bufnr)
     pcall(on_attach, client, bufnr)
 
