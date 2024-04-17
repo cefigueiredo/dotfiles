@@ -12,6 +12,11 @@ nvim_tree.setup({
     dotfiles = true,
     custom = {"^\\.git"}
   },
+  filesystem_watchers ={
+    ignore_dirs = {
+      "node_modules"
+    }
+  },
   renderer= {
     group_empty = true,
     highlight_opened_files = "all",
