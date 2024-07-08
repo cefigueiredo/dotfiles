@@ -45,6 +45,11 @@ set completeopt=menu,menuone,noselect
 " syntax on
 colorscheme dracula
 
+hi! link FloatBorder Pmenu
+hi! link NormalFloat Pmenu
+
+set winhighlight=Normal:DraculaBgDark,NormalNC:DraculaBgLight
+
 set autoindent
 "set background=dark
 set guicursor=n-v-c-sm:blinkon200-blinkwait100,i-ci-ve:ver25-blinkon200-blinkwait100,r-cr-o:hor20-blinkon200-blinkwait100
@@ -80,7 +85,7 @@ set scrolloff=3
 autocmd BufReadPost,FileReadPost * normal zR
 
 " background transparent
-hi Normal guibg=None
+"hi Normal guibg=None
 
 ""General Mappings
 
