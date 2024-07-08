@@ -35,8 +35,8 @@ setopt hist_verify # show command substitued by "!!" before execute
 setopt correct
 unsetopt correct_all
 
-alias prune-orphan-branches="git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
-alias list-orphan-branches="git fetch -p && git branch -vv | awk '/: gone]/{print $1}'"
+alias prune-orphan-branches="git fetch -p &>/dev/null && git branch -vv | awk '/\[origin\/.*: gone]/{print \$1}' | xargs git branch -D"
+alias list-orphan-branches="git fetch -p &>/dev/null && git branch -vv | awk '/\[origin\/.*: gone]/'"
 alias rspec="bundle exec rspec"
 
 # [[ -s "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
