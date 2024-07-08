@@ -17,10 +17,11 @@ local on_attach = function(client, bufnr)
 
   buf_set_keymap('n', 'gdc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gdf', '<cmd>lua vim.lsp.buf.definition({ reuse_win = true })<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gdv', '<cmd>lua require"telescope.builtin".lsp_definitions({ jump_type="vsplit" })<CR>', opts)
+  -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -36,6 +37,45 @@ local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint(bufnr, true)
   end
+end
+
+-- adds ShowRubyDeps command to show dependencies in the quickfix list.
+-- add the `all` argument to show indirect dependencies as well
+local function add_ruby_deps_command(client, bufnr)
+    vim.api.nvim_buf_create_user_command(bufnr, "ShowRubyDeps",
+                                          function(opts)
+
+        local params = vim.lsp.util.make_text_document_params()
+
+        local showAll = opts.args == "all"
+
+        client.request("rubyLsp/workspace/dependencies", params,
+                        function(error, result)
+            if error then
+                print("Error showing deps: " .. error)
+                return
+            end
+
+            local qf_list = {}
+            for _, item in ipairs(result) do
+                if showAll or item.dependency then
+                    table.insert(qf_list, {
+                        text = string.format("%s (%s) - %s",
+                                              item.name,
+                                              item.version,
+                                              item.dependency),
+
+                        filename = item.path
+                    })
+                end
+            end
+
+            vim.fn.setqflist(qf_list)
+            vim.cmd('copen')
+        end, bufnr)
+    end, {nargs = "?", complete = function()
+        return {"all"}
+    end})
 end
 
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -73,6 +113,8 @@ nvim_lsp['ruby_ls'].setup {
 
   on_attach = function(client, bufnr)
     pcall(on_attach, client, bufnr)
+
+    pcall(add_ruby_deps_command, client, bufnr)
 
     if require("vim.lsp.diagnostic")._enable then
       return
