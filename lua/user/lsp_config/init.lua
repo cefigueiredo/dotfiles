@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint(bufnr, true)
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr}))
   end
 end
 
@@ -108,7 +108,7 @@ nvim_lsp['lua_ls'].setup {
   },
 }
 
-nvim_lsp['ruby_ls'].setup {
+nvim_lsp['ruby_lsp'].setup {
   capabilities = capabilities,
 
   on_attach = function(client, bufnr)
