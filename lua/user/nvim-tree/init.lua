@@ -17,6 +17,9 @@ nvim_tree.setup({
       "node_modules"
     }
   },
+  git = {
+    enable = false
+  },
   renderer= {
     group_empty = true,
     highlight_opened_files = "all",
