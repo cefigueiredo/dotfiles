@@ -29,6 +29,9 @@ call plug#begin()
   Plug 'nvim-treesitter/playground'
   Plug 'godlygeek/tabular'
   Plug 'lukas-reineke/indent-blankline.nvim'
+
+  Plug 'zbirenbaum/copilot.lua'
+  Plug 'zbirenbaum/copilot-cmp'
 call plug#end()
 
 lua require 'user.cmp'
@@ -37,6 +40,7 @@ lua require 'user.tree-sitter'
 lua require 'user.lsp_config'
 lua require 'user.nvim-tree'
 lua require 'user.indent-blankline'
+lua require 'user.copilot'
 
 " nvim-cmp settings
 set completeopt=menu,menuone,noselect
