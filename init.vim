@@ -22,7 +22,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
   Plug 'nvim-telescope/telescope-live-grep-args.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
