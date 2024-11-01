@@ -10,4 +10,5 @@ node_modules
 *.orig
 .DS_Store
 .nvmrc
+.overmind.local
 tmp/*

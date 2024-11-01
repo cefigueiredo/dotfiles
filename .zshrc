@@ -5,6 +5,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export DISABLE_SPRING=true
 export RUBOCOP_OPTS="--no-server"
 export RUBY_DEBUG_NO_RELINE=1
+export OVERMIND_ENV="./.overmind.local"
 
 fpath=(~/.zsh $fpath)
 
