@@ -45,6 +45,7 @@ treesitter_config.setup{
   },
 }
 
-vim.o.foldmethod = 'expr'
-vim.o.foldtext = 'v:lua.vim.treesitter.foldtext()'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+require'treesitter-context'.setup()
+
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

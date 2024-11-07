@@ -27,6 +27,7 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
   Plug 'nvim-treesitter/playground'
+  Plug 'nvim-treesitter/nvim-treesitter-context'
   Plug 'godlygeek/tabular'
   Plug 'lukas-reineke/indent-blankline.nvim'
 
