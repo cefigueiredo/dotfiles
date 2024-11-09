@@ -13,7 +13,7 @@ end
 
 local copilot_group = vim.api.nvim_create_augroup("MyCopilot", { clear = false })
 
-vim.api.nvim_create_autocmd("InsertEnter", {
+vim.api.nvim_create_autocmd("VimEnter", {
   group = copilot_group,
   once = true,
   callback = setup_copilot

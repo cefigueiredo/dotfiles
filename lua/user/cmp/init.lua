@@ -3,7 +3,6 @@ local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 local copilot_cmp_ok, copilot_cmp = pcall(require, "copilot_cmp")
 if copilot_cmp_ok then
-  vim.print("copilot_cmp run")
   copilot_cmp.setup()
 end
 
