@@ -33,6 +33,7 @@ call plug#begin()
 
   Plug 'zbirenbaum/copilot.lua'
   Plug 'zbirenbaum/copilot-cmp'
+  Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary'}
 call plug#end()
 
 lua require 'user.cmp'
