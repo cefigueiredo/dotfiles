@@ -21,7 +21,7 @@ call plug#begin()
   Plug 'trevoke/ultisnips-rspec'
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
-  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-lua/plenary.nvim', { 'branch': 'master' }
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
   Plug 'nvim-telescope/telescope-live-grep-args.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -34,6 +34,7 @@ call plug#begin()
   Plug 'zbirenbaum/copilot.lua'
   Plug 'zbirenbaum/copilot-cmp'
   Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary'}
+  Plug 'olimorris/codecompanion.nvim'
 call plug#end()
 
 lua require 'user.cmp'
