@@ -26,6 +26,7 @@ telescope.setup {
 }
 
 vim.keymap.set('n', '<C-p>', telescope_builtin.find_files, { noremap = true })
+vim.keymap.set('n', '<leader>b', telescope_builtin.buffers, { noremap = true })
 vim.keymap.set('n', '<C-f>', telescope.extensions.live_grep_args.live_grep_args, { noremap = true })
 
 telescope.load_extension("live_grep_args")
