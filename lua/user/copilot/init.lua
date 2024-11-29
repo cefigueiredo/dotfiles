@@ -19,32 +19,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
   callback = setup_copilot
 })
 
-local chat_ok, chat = pcall(require, "CopilotChat")
-
-if not chat_ok then
-  return
-end
-
-chat.setup({
-  model = 'claude-3.5-sonnet'
-})
-
-local companion_ok, companion = pcall(require, "codecompanion")
-
-if not companion_ok then
-  return
-end
-
-companion.setup({
-  adapters = {
-    copilot = function ()
-      return require("codecompanion.adapters").extend("copilot", {
-        schema = {
-          model = {
-            default = "claude-3.5-sonnet"
-          }
-        },
-      })
-    end
-  }
-})
+require("user.copilot.chat").setup()
+require("user.copilot.companion").setup()
