@@ -110,10 +110,10 @@ augroup BTERM
 augroup END
 
 augroup RSPEC
-  autocmd BufEnter *_spec.rb nnoremap <F9> :bo vertical split +term\ bundle\ exec\ rspec\ %<CR>
-  autocmd BufEnter *_spec.rb nnoremap <leader><F9> :bo vertical split +term\ ENABLE_ALL_FLAGS=true\ bundle\ exec\ rspec\ %<CR>
-  autocmd BufEnter *_spec.rb nnoremap <F10> :bo vertical split +term\ bundle\ exec\ rspec\ <C-r>=expand("%")<CR>:<C-r>=line(".")<CR><CR>
-  autocmd BufEnter *_spec.rb nnoremap <leader><F10> :bo vertical split +term\ ENABLE_ALL_FLAGS=true\ bundle\ exec\ rspec\ <C-r>=expand("%")<CR>:<C-r>=line(".")<CR><CR>
+  autocmd BufEnter *_spec.rb nnoremap <F9> :bo vertical split +term\ bundle\ exec\ rspec\ --format=progress\ %<CR>
+  autocmd BufEnter *_spec.rb nnoremap <leader><F9> :bo vertical split +term\ ENABLE_ALL_FLAGS=true\ bundle\ exec\ rspec\ --format=progress\ %<CR>
+  autocmd BufEnter *_spec.rb nnoremap <F10> :bo vertical split +term\ bundle\ exec\ rspec\ --format=progress\ <C-r>=expand("%")<CR>:<C-r>=line(".")<CR><CR>
+  autocmd BufEnter *_spec.rb nnoremap <leader><F10> :bo vertical split +term\ ENABLE_ALL_FLAGS=true\ bundle\ exec\ rspec\ --format=progress\ <C-r>=expand("%")<CR>:<C-r>=line(".")<CR><CR>
 augroup END
 
 "  Yank file_path to system buffer
