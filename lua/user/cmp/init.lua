@@ -3,11 +3,12 @@ local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 local copilot_cmp_ok, copilot_cmp = pcall(require, "copilot_cmp")
 if copilot_cmp_ok then
-  copilot_cmp.setup()
+  copilot_cmp.setup({
+    fix_pairs = true
+  })
 end
 
 require("cmp_nvim_ultisnips").setup{}
-
 
 cmp.setup({
   snippet = {
@@ -21,8 +22,20 @@ cmp.setup({
       documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<A-j>'] = cmp.mapping.scroll_docs(-4),
-    ['<A-k>'] = cmp.mapping.scroll_docs(4),
+    ['<C-j>'] = function(fallback)
+      if cmp.visible() then
+        cmp.mapping.scroll_docs(-4)
+      else
+        fallback()
+      end
+    end,
+    ['<C-k>'] = function(fallback)
+      if cmp.visible() then
+        cmp.mapping.scroll_docs(4)
+      else
+        fallback()
+      end
+    end,
     ['<C-Space>'] = cmp.mapping.complete({}),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),

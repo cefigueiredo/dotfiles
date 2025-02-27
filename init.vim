@@ -35,6 +35,7 @@ call plug#begin()
   Plug 'zbirenbaum/copilot-cmp'
   Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary'}
   Plug 'olimorris/codecompanion.nvim'
+  Plug 'MeanderingProgrammer/render-markdown.nvim'
 call plug#end()
 
 lua require 'user.cmp'
@@ -55,7 +56,7 @@ colorscheme dracula
 hi! link FloatBorder Pmenu
 hi! link NormalFloat Pmenu
 
-set winhighlight=Normal:DraculaBgDark,NormalNC:DraculaBgLight
+set winhighlight=Normal:DraculaBgDarker,NormalNC:DraculaBgDark
 
 set autoindent
 "set background=dark
@@ -87,9 +88,6 @@ set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 set nowrap
 set updatetime=100
 set scrolloff=3
-
-" Treesitter folding
-autocmd BufReadPost,FileReadPost * normal zR
 
 " background transparent
 "hi Normal guibg=None

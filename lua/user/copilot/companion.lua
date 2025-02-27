@@ -8,6 +8,13 @@ local copilot_adapter = function()
   })
 end
 
+local markdown_ok, markdown = pcall(require, "render-markdown")
+if markdown_ok then
+  markdown.setup({
+    file_type = { "markdown", "codecompanion" }
+  })
+end
+
 return {
   setup = function()
     local companion_ok, companion = pcall(require, "codecompanion")
@@ -19,6 +26,11 @@ return {
     companion.setup({
       adapters = {
         copilot = copilot_adapter
+      },
+      display = {
+        action_palette = {
+          provider = "telescope"
+        }
       }
     })
   end
