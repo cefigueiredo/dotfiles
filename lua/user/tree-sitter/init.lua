@@ -46,7 +46,7 @@ treesitter_config.setup {
   },
 }
 
-require 'treesitter-context'
+-- require 'treesitter-context'
 
 local function enable_foldexpr(bufnr)
   vim.api.nvim_buf_call(bufnr, function()
