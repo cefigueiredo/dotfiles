@@ -24,6 +24,7 @@ call plug#begin()
   Plug 'nvim-lua/plenary.nvim', { 'branch': 'master' }
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
   Plug 'nvim-telescope/telescope-live-grep-args.nvim'
+  Plug 'nvim-telescope/telescope-ui-select.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
   Plug 'nvim-treesitter/playground'
@@ -33,9 +34,10 @@ call plug#begin()
 
   Plug 'zbirenbaum/copilot.lua'
   Plug 'zbirenbaum/copilot-cmp'
-  Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary'}
+  Plug 'CopilotC-Nvim/CopilotChat.nvim'
   Plug 'olimorris/codecompanion.nvim'
   Plug 'MeanderingProgrammer/render-markdown.nvim'
+  Plug 'Davidyz/VectorCode', { 'tag': '0.7.7' }
 call plug#end()
 
 lua require 'user.cmp'

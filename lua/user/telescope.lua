@@ -13,6 +13,16 @@ local telescope_builtin = require("telescope.builtin")
 -- local lga_actions = require("telescope-live-grep-args.actions")
 telescope.setup {
   extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+      -- even more opts
+      -- width = 0.5,
+      -- height = 0.5,
+      -- previewer = false,
+      -- border = true,
+      -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+      }
+    },
     live_grep_args = {
       auto_quotiong = true,
       mappings = {
@@ -29,4 +39,5 @@ vim.keymap.set('n', '<C-p>', telescope_builtin.find_files, { noremap = true })
 vim.keymap.set('n', '<leader>b', telescope_builtin.buffers, { noremap = true })
 vim.keymap.set('n', '<C-f>', telescope.extensions.live_grep_args.live_grep_args, { noremap = true })
 
+telescope.load_extension("ui-select")
 telescope.load_extension("live_grep_args")
