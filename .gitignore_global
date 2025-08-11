@@ -1,7 +1,7 @@
 *.swp
 .envrc*
 .env
-.ruby-version
+# .ruby-version
 .ruby-gemset
 .gitconfig
 .irb_history
@@ -12,3 +12,4 @@ node_modules
 .nvmrc
 .overmind.local
 tmp/*
+.vectorcode
