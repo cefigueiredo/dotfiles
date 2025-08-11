@@ -108,6 +108,15 @@ nvim_lsp['lua_ls'].setup {
 
 nvim_lsp['ruby_lsp'].setup {
   capabilities = capabilities,
+  --init_options = {
+  --  formatter = 'standard',
+  --  linters = { 'standard' },
+  --  addonSettings = {
+  --    ["Ruby LSP Rails"] = {
+  --      enablePendingMigrationsPrompt = true
+  --    },
+  --  },
+  --},
 
   on_attach = function(client, bufnr)
     pcall(on_attach, client, bufnr)
