@@ -38,6 +38,8 @@ call plug#begin()
   Plug 'olimorris/codecompanion.nvim'
   Plug 'MeanderingProgrammer/render-markdown.nvim'
   Plug 'Davidyz/VectorCode', { 'tag': '0.7.7' }
+  Plug 'folke/snacks.nvim'
+  Plug 'coder/claudecode.nvim'
 call plug#end()
 
 lua require 'user.cmp'
@@ -47,6 +49,7 @@ lua require 'user.lsp_config'
 lua require 'user.nvim-tree'
 lua require 'user.indent-blankline'
 lua require 'user.copilot'
+lua require 'user.claudecode'
 
 " nvim-cmp settings
 set completeopt=menu,menuone,noselect

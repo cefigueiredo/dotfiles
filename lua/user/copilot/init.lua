@@ -19,5 +19,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
   callback = setup_copilot
 })
 
-require("user.copilot.chat").setup()
+-- require("user.copilot.chat").setup()
 require("user.copilot.companion").setup()
