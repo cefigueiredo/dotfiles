@@ -9,7 +9,6 @@ treesitter_config.setup {
     "c",
     "elixir",
     "embedded_template",
-    "help",
     "html",
     "javascript",
     "lua",
