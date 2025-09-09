@@ -22,7 +22,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
   Plug 'nvim-lua/plenary.nvim', { 'branch': 'master' }
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+  Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-live-grep-args.nvim'
   Plug 'nvim-telescope/telescope-ui-select.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -37,7 +37,7 @@ call plug#begin()
   "Plug 'CopilotC-Nvim/CopilotChat.nvim'
   Plug 'olimorris/codecompanion.nvim'
   Plug 'MeanderingProgrammer/render-markdown.nvim'
-  Plug 'Davidyz/VectorCode', { 'tag': '0.7.7' }
+  Plug 'Davidyz/VectorCode'
   Plug 'folke/snacks.nvim'
   Plug 'coder/claudecode.nvim'
 call plug#end()
