@@ -1,9 +1,3 @@
-local start_ok, nvim_lsp = pcall(require, 'lspconfig')
-
-if not start_ok then
-  return
-end
-
 vim.diagnostic.config {
   virtual_text = false,
   signs = true,
@@ -43,56 +37,56 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr}))
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }))
   end
 end
 
 -- adds ShowRubyDeps command to show dependencies in the quickfix list.
 -- add the `all` argument to show indirect dependencies as well
 local function add_ruby_deps_command(client, bufnr)
-    vim.api.nvim_buf_create_user_command(bufnr, "ShowRubyDeps",
-                                          function(opts)
+  vim.api.nvim_buf_create_user_command(bufnr, "ShowRubyDeps",
+    function(opts)
+      local params = vim.lsp.util.make_text_document_params()
 
-        local params = vim.lsp.util.make_text_document_params()
+      local showAll = opts.args == "all"
 
-        local showAll = opts.args == "all"
+      client.request("rubyLsp/workspace/dependencies", params,
+        function(error, result)
+          if error then
+            print("Error showing deps: " .. error)
+            return
+          end
 
-        client.request("rubyLsp/workspace/dependencies", params,
-                        function(error, result)
-            if error then
-                print("Error showing deps: " .. error)
-                return
+          local qf_list = {}
+          for _, item in ipairs(result) do
+            if showAll or item.dependency then
+              table.insert(qf_list, {
+                text = string.format("%s (%s) - %s",
+                  item.name,
+                  item.version,
+                  item.dependency),
+                filename = item.path
+              })
             end
+          end
 
-            local qf_list = {}
-            for _, item in ipairs(result) do
-                if showAll or item.dependency then
-                    table.insert(qf_list, {
-                        text = string.format("%s (%s) - %s",
-                                              item.name,
-                                              item.version,
-                                              item.dependency),
-
-                        filename = item.path
-                    })
-                end
-            end
-
-            vim.fn.setqflist(qf_list)
-            vim.cmd('copen')
+          vim.fn.setqflist(qf_list)
+          vim.cmd('copen')
         end, bufnr)
-    end, {nargs = "?", complete = function()
-        return {"all"}
-    end})
+    end, {
+      nargs = "?",
+      complete = function()
+        return { "all" }
+      end
+    })
 end
 
--- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local flags = { debounce_text_changes = 150, }
-
-nvim_lsp['lua_ls'].setup {
+vim.lsp.config["*"] = {
   on_attach = on_attach,
-  capabilities = capabilities,
+  -- capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
+
+vim.lsp.config ['lua_ls'] = {
   settings = {
     Lua = {
       runtime = {
@@ -116,8 +110,7 @@ nvim_lsp['lua_ls'].setup {
   },
 }
 
-nvim_lsp['ruby_lsp'].setup {
-  capabilities = capabilities,
+vim.lsp.config['ruby_lsp'] = {
   --init_options = {
   --  formatter = 'standard',
   --  linters = { 'standard' },
@@ -140,7 +133,7 @@ nvim_lsp['ruby_lsp'].setup {
     local callback = function()
       local params = vim.lsp.util.make_text_document_params(bufnr)
 
-      client.request(
+      client:request(
         'textDocument/diagnostic',
         { textDocument = params },
         function(err, result)
@@ -176,18 +169,18 @@ nvim_lsp['ruby_lsp'].setup {
 ---  capabilities = capabilities,
 ---}
 
-nvim_lsp['elixirls'].setup {
-  on_attach = on_attach,
-  flags = flags,
-  capabilities = capabilities,
+vim.lsp.config['elixirls'] = {
   cmd = { "/home/cefig/dev/elixir-ls-1.13/language_server.sh" },
 }
 
-nvim_lsp['rust_analyzer'].setup {
-  on_attach = on_attach,
-  flags = flags,
-  capabilities = capabilities,
+vim.lsp.config['rust_analyzer'] = {
   cmd = { "rustup", "run", "stable", "rust-analyzer" },
 }
 
-nvim_lsp['pylsp'].setup {}
+vim.lsp.enable({
+  'elixirls',
+  'lua_ls',
+  'pylsp',
+  'ruby_lsp',
+  'rust_analyzer',
+})
