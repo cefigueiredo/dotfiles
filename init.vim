@@ -93,6 +93,7 @@ set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 set nowrap
 set updatetime=100
 set scrolloff=3
+set winborder=rounded
 
 " background transparent
 "hi Normal guibg=None
