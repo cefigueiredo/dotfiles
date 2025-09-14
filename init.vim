@@ -9,8 +9,8 @@ call plug#begin()
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/nvim-cmp'
-  Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'nvim-tree/nvim-tree.lua'
+  Plug 'nvim-tree/nvim-web-devicons'
   Plug 'neovim/nvim-lspconfig'
   Plug 'quangnguyen30192/cmp-nvim-ultisnips'
   Plug 'rafamadriz/friendly-snippets'
@@ -19,7 +19,6 @@ call plug#begin()
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-surround'
   Plug 'trevoke/ultisnips-rspec'
-  Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
@@ -42,8 +41,11 @@ call plug#begin()
   Plug 'coder/claudecode.nvim'
 
   Plug 'stevearc/oil.nvim'
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'franco-ruggeri/codecompanion-lualine.nvim'
 call plug#end()
 
+lua require 'user.lualine'
 lua require 'user.cmp'
 lua require 'user.telescope'
 lua require 'user.tree-sitter'
@@ -90,7 +92,7 @@ set splitbelow
 set splitright
 set tabstop=2
 set termguicolors
-set laststatus=1 " 1 = show status bar if >= 2 windows; 2 = always
+set laststatus=2 " 1 = show status bar if >= 2 windows; 2 = always
 set wildignore+=*/tmp/* " ignore conditions for for ctr-p/fzf
 set wildignore+=*.jpg,*.gif,*.gem,*.o,*.so,*.swp,*.zip,*.log
 set nowrap
