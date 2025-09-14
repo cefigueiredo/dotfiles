@@ -21,7 +21,7 @@ call plug#begin()
   Plug 'trevoke/ultisnips-rspec'
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-rhubarb'
-  Plug 'nvim-lua/plenary.nvim', { 'branch': 'master' }
+  Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-live-grep-args.nvim'
   Plug 'nvim-telescope/telescope-ui-select.nvim'
@@ -40,6 +40,8 @@ call plug#begin()
   Plug 'Davidyz/VectorCode'
   Plug 'folke/snacks.nvim'
   Plug 'coder/claudecode.nvim'
+
+  Plug 'stevearc/oil.nvim'
 call plug#end()
 
 lua require 'user.cmp'
@@ -50,6 +52,7 @@ lua require 'user.nvim-tree'
 lua require 'user.indent-blankline'
 lua require 'user.copilot'
 lua require 'user.claudecode'
+lua require 'user.oil'
 
 " nvim-cmp settings
 set completeopt=menu,menuone,noselect
