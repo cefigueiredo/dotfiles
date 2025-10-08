@@ -14,17 +14,19 @@ vim.diagnostic.config {
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-  -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   -- enable completion triggered by <c-x><c-o>
-  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- lsp mappings
   local opts = { noremap = true, silent = true }
 
   buf_set_keymap('n', 'gdc', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gdf', '<cmd>lua vim.lsp.buf.definition({ reuse_win = true })<CR>', opts)
-  buf_set_keymap('n', 'gdv', '<cmd>lua require"telescope.builtin".lsp_definitions({ jump_type="vsplit" })<CR>', opts)
+  buf_set_keymap('n', 'gdv', '<cmd>vsplit | lua vim.lsp.buf.definition({ reuse_win = true })<CR>', opts)
+  --buf_set_keymap('n', 'gdv', '<cmd>lua require"telescope.builtin".lsp_definitions({ jump_type="vsplit" })<CR>', opts)
+  buf_set_keymap('n', 'gdt', '<cmd>lua require"telescope.builtin".lsp_definitions({ jump_type="tab" })<CR>', opts)
   -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
@@ -38,6 +40,10 @@ local on_attach = function(client, bufnr)
 
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }))
+  end
+
+  if client.server_capabilities.definitionProvider then
+    buf_set_option('tagfunc', "v:lua.vim.lsp.tagfunc")
   end
 end
 
