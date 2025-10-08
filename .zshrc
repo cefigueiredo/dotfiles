@@ -47,8 +47,8 @@ alias update_chromedriver="brew update; brew upgrade chromedriver; xattr -d com.
 
 if [[ $(uname) == "Darwin" ]]; then
   [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
-  [ -n "$(brew --prefix postgresql@16)" ] && export PATH="$(brew --prefix postgresql@16)/bin:$PATH"
-  [ -n "$(brew --prefix node@20)" ] && export PATH="$(brew --prefix node@20)/bin:$PATH"
+  [ -n "$(brew --prefix postgresql@17)" ] && export PATH="$(brew --prefix postgresql@17)/bin:$PATH"
+  [ -n "$(brew --prefix node@22)" ] && export PATH="$(brew --prefix node@22)/bin:$PATH"
   # chruby
   [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/chruby.sh"
   [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/auto.sh"
