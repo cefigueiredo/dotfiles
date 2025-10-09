@@ -23,20 +23,29 @@ cmp.setup({
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-j>'] = function(fallback)
-      if cmp.visible() then
+      if cmp.visible_docs() then
         cmp.mapping.scroll_docs(-4)
       else
         fallback()
       end
     end,
     ['<C-k>'] = function(fallback)
-      if cmp.visible() then
+      if cmp.visible_docs() then
         cmp.mapping.scroll_docs(4)
       else
         fallback()
       end
     end,
-    ['<C-Space>'] = cmp.mapping.complete({}),
+    ['<C-Space>'] = function(fallback)
+      if not cmp.visible() then
+        return cmp.complete({})
+      end
+      if cmp.visible_docs() then
+        return cmp.close_docs()
+      end
+
+      cmp.abort()
+    end,
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp.mapping(
@@ -44,7 +53,10 @@ cmp.setup({
       {"i", "s"}
     ),
     ['<S-Tab>'] = cmp.mapping(
-      function(fallback) cmp_ultisnips_mappings.jump_backwards(fallback) end,
+      function(fallback)
+        cmp.abort()
+        fallback()
+      end,
       {"i", "s"}
     )
   }),
