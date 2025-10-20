@@ -2,6 +2,7 @@ call plug#begin()
   Plug 'airblade/vim-gitgutter'
   Plug 'ap/vim-css-color'
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'folke/tokyonight.nvim'
   Plug 'elixir-lang/vim-elixir'
   Plug 'honza/vim-snippets'
   Plug 'hrsh7th/cmp-buffer'
@@ -45,6 +46,7 @@ call plug#begin()
   Plug 'franco-ruggeri/codecompanion-lualine.nvim'
 call plug#end()
 
+lua require 'user.colorscheme'
 lua require 'user.lualine'
 lua require 'user.cmp'
 lua require 'user.telescope'
@@ -61,12 +63,6 @@ set completeopt=menu,menuone,noselect
 
 " General settings
 " syntax on
-colorscheme dracula
-
-hi! link FloatBorder Pmenu
-hi! link NormalFloat Pmenu
-
-set winhighlight=Normal:DraculaBgDarker,NormalNC:DraculaBgDark
 
 set autoindent
 "set background=dark
