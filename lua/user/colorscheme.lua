@@ -21,6 +21,14 @@ tokyonight.setup({
   lualine_bold = false,
 
   on_highlights = function(hl, colors)
+    local background = vim.api.nvim_get_option_value("background", {scope = "global"})
+    if background == "light" then
+      hl.NormalNC = { bg = colors.bg_dark1, fg = colors.comment }
+
+      hl.Normal = { bg = colors.bg, fg = colors.fg }
+      return
+    end
+
     hl.NormalNC = { bg = colors.bg, fg = colors.comment }
 
     hl.Normal = { bg = colors.bg_dark1, fg = colors.fg_dark }
