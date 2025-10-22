@@ -12,6 +12,22 @@ local telescope_builtin = require("telescope.builtin")
 
 -- local lga_actions = require("telescope-live-grep-args.actions")
 telescope.setup {
+  defaults = {
+    mappings = {
+      n = {
+        ["<C-k>"] = "preview_scrolling_up",
+        ["<C-j>"] = "preview_scrolling_down",
+        ["<C-h>"] = "preview_scrolling_left",
+        ["<C-l>"] = "preview_scrolling_right",
+      },
+    },
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = { "node_modules", ".git" },
+    },
+  },
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {
