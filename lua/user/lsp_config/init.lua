@@ -117,55 +117,19 @@ vim.lsp.config ['lua_ls'] = {
 }
 
 vim.lsp.config['ruby_lsp'] = {
-  --init_options = {
-  --  formatter = 'standard',
-  --  linters = { 'standard' },
-  --  addonSettings = {
-  --    ["Ruby LSP Rails"] = {
-  --      enablePendingMigrationsPrompt = true
-  --    },
-  --  },
-  --},
+  filetypes = { 'ruby', 'eruby', 'ruby.rspec', 'html.eruby' },
+  init_options = {
+    addonSettings = {
+      ["Ruby LSP Rails"] = {
+        enablePendingMigrationsPrompt = false
+      },
+    },
+  },
 
   on_attach = function(client, bufnr)
     pcall(on_attach, client, bufnr)
 
     pcall(add_ruby_deps_command, client, bufnr)
-
-    if require("vim.lsp.diagnostic")._enable then
-      return
-    end
-
-    local callback = function()
-      local params = vim.lsp.util.make_text_document_params(bufnr)
-
-      client:request(
-        'textDocument/diagnostic',
-        { textDocument = params },
-        function(err, result)
-          if err then vim.lsp.log.error("ruby-lsp - diagnostics error - %s", vim.inspect(err)) end
-          if not result then return end
-
-          vim.lsp.diagnostic.on_publish_diagnostics(
-            nil,
-            vim.tbl_extend('keep', params, { diagnostics = result.items }),
-            { client_id = client.id }
-          )
-        end
-      )
-    end
-
-    callback()
-
-    local group = vim.api.nvim_create_augroup('ruby_ls', { clear = false })
-    vim.api.nvim_create_autocmd(
-      { 'BufEnter', 'BufWritePre', 'BufReadPost', 'InsertLeave', 'TextChanged' },
-      {
-        buffer = bufnr,
-        callback = callback,
-        group = group,
-      }
-    )
   end
 }
 
