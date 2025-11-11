@@ -1,17 +1,18 @@
 local claudecode_ok, claude = pcall(require, "claudecode")
-
--- Check if the claude-cli file exists
-local path = vim.fn.expand("~/.local/bin/claude-cli")
-if vim.fn.filereadable(path) == 0 then
-  return
-end
-
 if not claudecode_ok then
   return
 end
 
+-- Check if the claude cli is installed
+local has_claude = vim.fn.executable("claude")
+if has_claude == 0 then
+  return
+end
+
 claude.setup({
-  terminal_cmd = "~/.local/bin/claude-cli",
+  terminal = {
+    split_width_percentage = 0.35,
+  }
 })
 
 local keymaps = {
