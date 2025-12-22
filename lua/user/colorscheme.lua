@@ -16,23 +16,23 @@ tokyonight.setup({
     floats = "dark",
   },
   day_brightness = 0.3,
-  hide_inactive_statusline = false,
+  hide_inactive_statusline = true,
   dim_inactive = false,
   lualine_bold = false,
 
-  on_highlights = function(hl, colors)
-    local background = vim.api.nvim_get_option_value("background", {scope = "global"})
-    if background == "light" then
-      hl.NormalNC = { bg = colors.bg_dark1, fg = colors.comment }
+  -- on_highlights = function(hl, colors)
+  --   local background = vim.api.nvim_get_option_value("background", {scope = "global"})
+  --   if background == "light" then
+  --     hl.NormalNC = { bg = colors.bg_dark1, fg = colors.fg }
 
-      hl.Normal = { bg = colors.bg, fg = colors.fg }
-      return
-    end
+  --     hl.Normal = { bg = colors.bg, fg = colors.fg }
+  --     return
+  --   end
 
-    hl.NormalNC = { bg = colors.bg, fg = colors.comment }
+  --   hl.NormalNC = { bg = colors.bg, fg = colors.comment }
 
-    hl.Normal = { bg = colors.bg_dark1, fg = colors.fg_dark }
-  end,
+  --   hl.Normal = { bg = colors.bg_dark1, fg = colors.fg_dark }
+  -- end,
 })
 
 vim.cmd "colorscheme tokyonight"
