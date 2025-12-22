@@ -117,7 +117,7 @@ vim.lsp.config ['lua_ls'] = {
 }
 
 vim.lsp.config['ruby_lsp'] = {
-  filetypes = { 'ruby', 'eruby', 'ruby.rspec', 'html.eruby' },
+  filetypes = { 'ruby', 'ruby.rspec', 'rspec' },
   init_options = {
     addonSettings = {
       ["Ruby LSP Rails"] = {

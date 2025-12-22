@@ -44,6 +44,8 @@ call plug#begin()
   Plug 'stevearc/oil.nvim'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'franco-ruggeri/codecompanion-lualine.nvim'
+
+  Plug 'mfussenegger/nvim-lint'
 call plug#end()
 
 lua require 'user.colorscheme'
@@ -57,6 +59,7 @@ lua require 'user.indent-blankline'
 lua require 'user.copilot'
 lua require 'user.claudecode'
 lua require 'user.oil'
+lua require 'user.linters'
 
 " nvim-cmp settings
 set completeopt=menu,menuone,noselect
