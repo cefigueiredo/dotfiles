@@ -1,35 +1,30 @@
-local treesitter_ok, treesitter_config = pcall(require, "nvim-treesitter.configs")
+local treesitter_ok, nvim_treesitter = pcall(require, "nvim-treesitter")
 if not treesitter_ok then
   vim.notify("nvim-treesitter not found", vim.log.levels.WARN)
   return
 end
 
-treesitter_config.setup {
-  ensure_installed = {
-    "c",
-    "elixir",
-    "embedded_template",
-    "html",
-    "javascript",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "query",
-    "regex",
-    "ruby",
-    "rust",
-    "sql",
-    "vim",
-    "yaml",
-  },
-
-  indent = { enable = true },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+local ensured_installed = {
+  "c",
+  "elixir",
+  "embedded_template",
+  "html",
+  "javascript",
+  "scss",
+  "lua",
+  "markdown",
+  "markdown_inline",
+  "python",
+  "query",
+  "regex",
+  "ruby",
+  "rust",
+  "sql",
+  "vim",
+  "yaml",
 }
+
+nvim_treesitter.install(ensured_installed)
 
 local function enable_foldexpr(bufnr)
   vim.api.nvim_buf_call(bufnr, function()
@@ -39,19 +34,20 @@ local function enable_foldexpr(bufnr)
   end)
 end
 
-local folding_group = vim.api.nvim_create_augroup('treesitter_fold', { clear = false })
+local treesitter_group = vim.api.nvim_create_augroup('treesitter', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
-  group = folding_group,
+  pattern = ensured_installed,
+  group = treesitter_group,
   callback = function(args)
-    if not pcall(vim.treesitter.language.get_lang, args.match) then
-      return
-    end
+    vim.treesitter.start()
 
     if vim.api.nvim_buf_line_count(args.buf) > 20000 then
       vim.notify('file too large, ignoring folding', vim.log.levels.INFO)
       return
     end
+
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
     enable_foldexpr(args.buf)
   end,
