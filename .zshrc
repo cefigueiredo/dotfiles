@@ -39,7 +39,7 @@ unsetopt correct_all
 alias prune-orphan-branches="git fetch -p &>/dev/null && git branch -vv | awk '/\[origin\/.*: gone]/{print \$1}' | xargs git branch -D"
 alias list-orphan-branches="git fetch -p &>/dev/null && git branch -vv | awk '/\[origin\/.*: gone]/'"
 # alias rspec="bundle exec rspec"
-alias update_app="bundle install; yarn install; rails db:migrate:with_data; overmind restart"
+# alias update_app="bundle install; yarn install; rails db:migrate:with_data; overmind restart"
 alias update_chromedriver="brew update; brew upgrade chromedriver; xattr -d com.apple.quarantine \$(which chromedriver)"
 
 # [[ -s "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
