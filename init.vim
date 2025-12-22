@@ -35,8 +35,8 @@ call plug#begin()
   Plug 'zbirenbaum/copilot.lua'
   Plug 'zbirenbaum/copilot-cmp'
   "Plug 'CopilotC-Nvim/CopilotChat.nvim'
-  Plug 'olimorris/codecompanion.nvim'
   Plug 'MeanderingProgrammer/render-markdown.nvim'
+  Plug 'olimorris/codecompanion.nvim', { 'tag': 'v17.33.0' }
   Plug 'Davidyz/VectorCode'
   Plug 'folke/snacks.nvim'
   Plug 'coder/claudecode.nvim'
