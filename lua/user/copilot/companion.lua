@@ -2,7 +2,7 @@ local copilot_adapter = function()
   return require("codecompanion.adapters.http").extend("copilot", {
     schema = {
       model = {
-        default = "claude-sonnet-4"
+        default = "claude-sonnet-4.5"
       }
     },
   })
@@ -24,8 +24,8 @@ return {
     end
 
     companion.setup({
-      adapters = {
-        http = { copilot = copilot_adapter }
+      interactions = {
+        adapters = "copilot",
       },
       opts = {
         log_level = "DEBUG",
