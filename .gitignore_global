@@ -13,3 +13,4 @@ node_modules
 .overmind.local
 tmp/*
 .vectorcode
+worktrees
