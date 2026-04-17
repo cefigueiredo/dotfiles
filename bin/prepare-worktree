@@ -1,0 +1,80 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'optparse'
+
+options = {
+  path: File.join("..", "worktrees"),
+  create_branch: false
+}
+
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: #{$0} [<opts>] <branch> [worktree_name] [--path=PATH]"
+
+  opts.separator ""
+  opts.separator "Prepares a git worktree by creating it and copying necessary gitignored configuration files."
+  opts.separator ""
+  opts.separator "Arguments:"
+  opts.separator "  branch          Git branch to use (required)"
+  opts.separator "  worktree_name   Name for the worktree directory (default: same as branch)"
+  opts.separator ""
+  opts.separator "Options:"
+
+  opts.on("-b", "Create the branch if it doesn't exist") do
+    options[:create_branch] = true
+  end
+
+  opts.on("--path=PATH", "Directory where worktrees are created (default: ../worktrees)") do |path|
+    options[:path] = path
+  end
+
+  opts.on("-h", "--help", "Show this help message") do
+    puts opts
+    exit
+  end
+end
+
+parser.parse!
+
+if ARGV.empty?
+  puts parser
+  exit 1
+end
+
+branch = ARGV[0]
+worktree_name = ARGV[1] || branch
+worktrees_dir = options[:path]
+
+FileUtils.mkdir_p(worktrees_dir) unless Dir.exist?(worktrees_dir)
+
+target_path = File.join(worktrees_dir, worktree_name)
+
+# Create the worktree if it doesn't already exist
+unless Dir.exist?(target_path)
+  worktree_cmd = ["git", "worktree", "add"]
+  worktree_cmd.push("-b", branch) if options[:create_branch]
+  worktree_cmd.push(target_path, branch)
+
+  unless system(*worktree_cmd)
+    puts "\nERROR: Failed to create worktree."
+    exit 1
+  end
+end
+
+# Copy config/ejson/keys directory
+source_keys_dir = File.join("config", "ejson", "keys")
+target_keys_dir = File.join(target_path, "config", "ejson", "keys")
+
+if Dir.exist?(source_keys_dir)
+  FileUtils.mkdir_p(target_keys_dir)
+  FileUtils.cp_r(Dir.glob(File.join(source_keys_dir, "*")), target_keys_dir)
+else
+  puts "Warning: #{source_keys_dir} does not exist. Skipping keys copy."
+end
+
+# Copy *.local files
+Dir.glob("*.local").each do |local_file|
+  FileUtils.cp(local_file, File.join(target_path, local_file))
+end
+
+puts "Git worktree prepared at #{target_path}."

@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+# Check arguments
+if ARGV.length != 2
+  puts "Usage: #{$0} <branch> <worktree_name>"
+  exit 1
+end
+
+worktrees_dir = File.join("..", "worktrees")
+
+unless Dir.exist?(worktrees_dir)
+  FileUtils.mkdir_p(worktrees_dir)
+end
+
+target_path =
+  if ARGV[1]&.start_with?("../")
+    ARGV[1]
+  elsif ARGV[1]
+    File.join(worktrees_dir, ARGV[1])
+  else
+    File.join(worktrees_dir, ARGV[0])
+  end
+
+git_branch = ARGV[0]
+
+# Create git worktree
+git_worktree_cmd = ["git", "worktree", "add", target_path, git_branch]
+unless system(*git_worktree_cmd)
+  puts "Failed to create git worktree."
+  exit 1
+end
+
+puts "Git worktree created at #{target_path} for branch #{git_branch}."
+
+# Copy config/ejson/keys directory
+source_keys_dir = File.join("config", "ejson", "keys")
+target_keys_dir = File.join(target_path, "config", "ejson", "keys")
+
+if Dir.exist?(source_keys_dir)
+  FileUtils.mkdir_p(target_keys_dir)
+  FileUtils.cp_r(Dir.glob(File.join(source_keys_dir, "*")), target_keys_dir)
+else
+  puts "Warning: #{source_keys_dir} does not exist. Skipping keys copy."
+end
+
+# Copy .overmind.local file
+source_overmind = ".overmind.local"
+target_overmind = File.join(target_path, ".overmind.local")
+
+if File.exist?(source_overmind)
+  FileUtils.cp(source_overmind, target_overmind)
+else
+  puts "Warning: #{source_overmind} does not exist. Skipping file copy."
+end
