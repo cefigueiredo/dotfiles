@@ -11,6 +11,7 @@ end
 
 claude.setup({
   terminal = {
+    provider = "snacks",
     split_width_percentage = 0.35,
   }
 })
