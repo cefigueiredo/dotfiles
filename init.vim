@@ -25,10 +25,10 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-live-grep-args.nvim'
   Plug 'nvim-telescope/telescope-ui-select.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'nvim-treesitter/nvim-treesitter-refactor'
-  Plug 'nvim-treesitter/playground'
-  "Plug 'nvim-treesitter/nvim-treesitter-context'
+
+  " nvim-treesitter branches: master for neovim 11.x - main for neovim 12.x
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'branch': 'master' } 
+
   Plug 'godlygeek/tabular'
   Plug 'lukas-reineke/indent-blankline.nvim'
 

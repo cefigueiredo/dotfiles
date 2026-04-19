@@ -29,23 +29,7 @@ treesitter_config.setup {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-  refactor = {
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "<leader>tr",
-      }
-    }
-  },
-  playground = {
-    enable = true,
-  },
-  query_linter = {
-    enable = true,
-  },
 }
-
--- require 'treesitter-context'
 
 local function enable_foldexpr(bufnr)
   vim.api.nvim_buf_call(bufnr, function()
