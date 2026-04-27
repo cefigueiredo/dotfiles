@@ -27,7 +27,7 @@ call plug#begin()
   Plug 'nvim-telescope/telescope-ui-select.nvim'
 
   " nvim-treesitter branches: master for neovim 11.x - main for neovim 12.x
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'branch': 'master' } 
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'branch': 'main' }
 
   Plug 'godlygeek/tabular'
   Plug 'lukas-reineke/indent-blankline.nvim'
