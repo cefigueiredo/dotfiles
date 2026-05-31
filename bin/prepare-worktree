@@ -45,6 +45,7 @@ branch = ARGV[0]
 worktree_name = ARGV[1] || branch
 worktrees_dir = options[:path]
 
+puts "Preparing git worktree for branch '#{branch}' at '#{worktrees_dir}/#{worktree_name}'..."
 FileUtils.mkdir_p(worktrees_dir) unless Dir.exist?(worktrees_dir)
 
 target_path = File.join(worktrees_dir, worktree_name)
@@ -52,8 +53,11 @@ target_path = File.join(worktrees_dir, worktree_name)
 # Create the worktree if it doesn't already exist
 unless Dir.exist?(target_path)
   worktree_cmd = ["git", "worktree", "add"]
-  worktree_cmd.push("-b", branch) if options[:create_branch]
-  worktree_cmd.push(target_path, branch)
+  if options[:create_branch]
+    worktree_cmd.push("-b", branch, target_path)
+  else
+    worktree_cmd.push(target_path, branch)
+  end
 
   unless system(*worktree_cmd)
     puts "\nERROR: Failed to create worktree."
@@ -73,7 +77,7 @@ else
 end
 
 # Copy *.local files
-Dir.glob("*.local").each do |local_file|
+Dir.glob(".*.local").each do |local_file|
   FileUtils.cp(local_file, File.join(target_path, local_file))
 end
 
