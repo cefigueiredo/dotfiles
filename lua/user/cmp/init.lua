@@ -1,13 +1,6 @@
 local cmp = require'cmp'
 local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
-local copilot_cmp_ok, copilot_cmp = pcall(require, "copilot_cmp")
-if copilot_cmp_ok then
-  copilot_cmp.setup({
-    fix_pairs = true
-  })
-end
-
 require("cmp_nvim_ultisnips").setup{}
 
 cmp.setup({
@@ -61,7 +54,6 @@ cmp.setup({
     )
   }),
   sources = cmp.config.sources({
-    { name= "copilot" },
     { name = 'ultisnips' },
     { name = 'nvim_lsp' },
   }, {

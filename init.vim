@@ -32,17 +32,11 @@ call plug#begin()
   Plug 'godlygeek/tabular'
   Plug 'lukas-reineke/indent-blankline.nvim'
 
-  Plug 'zbirenbaum/copilot.lua'
-  Plug 'zbirenbaum/copilot-cmp'
-  "Plug 'CopilotC-Nvim/CopilotChat.nvim'
-  Plug 'olimorris/codecompanion.nvim', { 'tag': 'v17.33.0' }
-  Plug 'Davidyz/VectorCode'
   Plug 'folke/snacks.nvim'
   Plug 'coder/claudecode.nvim'
 
   Plug 'stevearc/oil.nvim'
   Plug 'nvim-lualine/lualine.nvim'
-  Plug 'franco-ruggeri/codecompanion-lualine.nvim'
 
   Plug 'mfussenegger/nvim-lint'
 call plug#end()
@@ -55,7 +49,6 @@ lua require 'user.tree-sitter'
 lua require 'user.lsp_config'
 lua require 'user.nvim-tree'
 lua require 'user.indent-blankline'
-lua require 'user.copilot'
 lua require 'user.claudecode'
 lua require 'user.oil'
 lua require 'user.linters'
