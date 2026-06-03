@@ -45,10 +45,12 @@ alias update_chromedriver="brew update; brew upgrade chromedriver; xattr -d com.
 # [[ -s "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+[[ -s "$HOME/.local/bin" ]] && export PATH="$PATH:$HOME/.local/bin"
+
 if [[ $(uname) == "Darwin" ]]; then
   [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
   [ -n "$(brew --prefix postgresql@17)" ] && export PATH="$(brew --prefix postgresql@17)/bin:$PATH"
-  [ -n "$(brew --prefix node@22)" ] && export PATH="$(brew --prefix node@22)/bin:$PATH"
+  [ -n "$(brew --prefix node@24)" ] && export PATH="$(brew --prefix node@24)/bin:$PATH"
   # chruby
   [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/chruby.sh"
   [[ -n "$(brew --prefix chruby)" ]] && source "$(brew --prefix chruby)/share/chruby/auto.sh"
@@ -64,3 +66,4 @@ if [[ -n "$(which chruby)" ]] then
   source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
   source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 fi
+export LEFTHOOK_BIN=bin/lefthook

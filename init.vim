@@ -41,6 +41,8 @@ call plug#begin()
   Plug 'mfussenegger/nvim-lint'
 call plug#end()
 
+let g:python3_host_prog = '~/.local/pipx/venvs/pynvim/bin/python'
+
 lua require 'user.colorscheme'
 lua require 'user.lualine'
 lua require 'user.cmp'
