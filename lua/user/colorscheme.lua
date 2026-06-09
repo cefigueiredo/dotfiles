@@ -1,7 +1,13 @@
 local tokyonight_ok, tokyonight = pcall(require, "tokyonight")
+
 if not tokyonight_ok then
-  return
+  vim.pack.add({
+    { src = "https://github.com/folke/tokyonight.nvim", name = "tokyonight" }
+  })
+
+  tokyonight = require "tokyonight"
 end
+
 
 tokyonight.setup({
   style = "night",

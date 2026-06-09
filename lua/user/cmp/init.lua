@@ -29,7 +29,7 @@ cmp.setup({
         fallback()
       end
     end,
-    ['<C-Space>'] = function(fallback)
+    ['<C-Space>'] = function(_fallback)
       if not cmp.visible() then
         return cmp.complete({})
       end
@@ -57,7 +57,7 @@ cmp.setup({
     { name = 'ultisnips' },
     { name = 'nvim_lsp' },
   }, {
-    { name = 'buffer', keyword_length = 5 },
+    { name = 'buffer', keyword_length = 3 },
   })
 })
 
