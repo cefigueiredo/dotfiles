@@ -5,14 +5,11 @@ if not treesitter_ok then
 end
 
 local ensured_installed = {
-  "c",
   "elixir",
   "embedded_template",
   "html",
   "javascript",
   "scss",
-  "lua",
-  "markdown",
   "markdown_inline",
   "python",
   "query",
@@ -20,7 +17,6 @@ local ensured_installed = {
   "ruby",
   "rust",
   "sql",
-  "vim",
   "yaml",
 }
 
