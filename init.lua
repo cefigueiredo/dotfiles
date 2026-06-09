@@ -71,12 +71,6 @@ vim.pack.add({
   { src = gh 'stevearc/oil.nvim' },
   { src = gh 'nvim-lualine/lualine.nvim' },
   { src = gh 'mfussenegger/nvim-lint'  },
-  -- AI-Related
-  { src = gh 'zbirenbaum/copilot.lua' },
-  { src = gh 'CopilotC-Nvim/CopilotChat.nvim' },
-  { src = gh 'olimorris/codecompanion.nvim', version = 'v17.33.0' },
-  { src = gh 'franco-ruggeri/codecompanion-lualine.nvim' },
-  -- { src = gh 'Davidyz/VectorCode' },
   { src = gh 'folke/snacks.nvim' },
   { src = gh 'coder/claudecode.nvim' },
   --
@@ -87,7 +81,6 @@ vim.pack.add({
   { src = gh 'hrsh7th/cmp-nvim-lsp' },
   { src = gh 'hrsh7th/cmp-path' },
   { src = gh 'quangnguyen30192/cmp-nvim-ultisnips' },
-  { src = gh 'zbirenbaum/copilot-cmp' },
 })
 
 require 'user.oil'
@@ -96,10 +89,44 @@ require 'user.tree-sitter'
 require 'user.lsp_config'
 require 'user.nvim-tree'
 require 'user.indent-blankline'
-require 'user.copilot'
 require 'user.claudecode'
 require 'user.lualine'
 require 'user.cmp'
 require 'user.linters'
 
 -- :help lua-guide-autocmd
+local linenumbers_grp = vim.api.nvim_create_augroup('linenumbers', { clear = false })
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
+  pattern = '*',
+  group = linenumbers_grp,
+  command = 'setlocal relativenumber',
+  desc = 'show relativenumbers to current buffer'
+})
+vim.api.nvim_create_autocmd({ 'BufLeave', 'BufAdd' }, {
+  pattern = '*',
+  group = linenumbers_grp,
+  command = 'setlocal norelativenumber',
+  desc = 'hide relativenumber when leaving a buffer'
+})
+vim.api.nvim_create_autocmd({ 'FocusLost' }, {
+  pattern = '*',
+  group = linenumbers_grp,
+  command = 'set norelativenumber',
+  desc = 'hide relativenumber when not in focus'
+})
+
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  buffer = 0,
+  command = '%s/\\s\\+$//e',
+  desc = 'clean trailing space on save'
+})
+
+vim.keymap.set(
+  'n',
+  '<F4>',
+  '<cmd>let @+ = expand("%")<CR>',
+  { desc = 'yank file_path to system buffer' }
+)
+
+vim.keymap.set('n', '<F2>', '<cmd>NvimTreeToggle<cr>', { remap = false })
+vim.keymap.set('n', '<F3>', '<cmd>NvimTreeFindFile<cr>', { remap = false })
