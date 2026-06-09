@@ -16,6 +16,7 @@ vim.o.backup = false
 vim.o.showmode = false
 vim.o.swapfile = false
 vim.o.number = true
+vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.o.ruler = true
 vim.o.shiftround = true
