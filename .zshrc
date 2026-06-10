@@ -2,6 +2,7 @@ export DOTFILES_PATH="$HOME/dev/dotfiles"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_CTRL_T_OPTS="--walker-skip .git,node_modules"
 export DISABLE_SPRING=true
 export RUBOCOP_OPTS="--no-server"
 export RUBY_DEBUG_NO_RELINE=1
@@ -62,8 +63,6 @@ export NVM_DIR="$HOME/.nvm"
 
 [[ -n "$(which direnv)" ]] && eval "$(direnv hook zsh)";
 
-if [[ -n "$(which chruby)" ]] then
-  source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-  source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-fi
+[[ -n $(which fzf) ]] && source <(fzf --zsh)
+
 export LEFTHOOK_BIN=bin/lefthook
