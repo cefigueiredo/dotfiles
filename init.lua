@@ -1,6 +1,7 @@
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 -- General settings
+vim.g.python3_host_prog = '~/.local/pipx/venvs/pynvim/bin/python'
 
 vim.o.autoindent = true
 vim.o.guicursor = 'n-v-c-sm:blinkon200-blinkwait100,i-ci-ve:ver25-blinkon200-blinkwait100,r-cr-o:hor20-blinkon200-blinkwait100'

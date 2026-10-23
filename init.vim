@@ -1,59 +1,19 @@
 call plug#begin()
-  Plug 'airblade/vim-gitgutter'
-  Plug 'ap/vim-css-color'
-  Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'folke/tokyonight.nvim'
-  Plug 'elixir-lang/vim-elixir'
-  Plug 'honza/vim-snippets'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'nvim-tree/nvim-tree.lua'
-  Plug 'nvim-tree/nvim-web-devicons'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-  Plug 'rafamadriz/friendly-snippets'
-  Plug 'sirver/ultisnips'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-surround'
-  Plug 'trevoke/ultisnips-rspec'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-live-grep-args.nvim'
-  Plug 'nvim-telescope/telescope-ui-select.nvim'
-
-  " nvim-treesitter branches: master for neovim 11.x - main for neovim 12.x
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'branch': 'main' }
-
-  Plug 'godlygeek/tabular'
-  Plug 'lukas-reineke/indent-blankline.nvim'
-
-  Plug 'folke/snacks.nvim'
-  Plug 'coder/claudecode.nvim'
-
-  Plug 'stevearc/oil.nvim'
-  Plug 'nvim-lualine/lualine.nvim'
-
-  Plug 'mfussenegger/nvim-lint'
 call plug#end()
 
 let g:python3_host_prog = '~/.local/pipx/venvs/pynvim/bin/python'
 
-lua require 'user.colorscheme'
-lua require 'user.lualine'
-lua require 'user.cmp'
-lua require 'user.telescope'
-lua require 'user.tree-sitter'
-lua require 'user.lsp_config'
-lua require 'user.nvim-tree'
-lua require 'user.indent-blankline'
-lua require 'user.claudecode'
-lua require 'user.oil'
-lua require 'user.linters'
+"lua require 'user.colorscheme'
+"lua require 'user.lualine'
+"lua require 'user.cmp'
+"lua require 'user.telescope'
+"lua require 'user.tree-sitter'
+"lua require 'user.lsp_config'
+"lua require 'user.nvim-tree'
+"lua require 'user.indent-blankline'
+"lua require 'user.claudecode'
+"lua require 'user.oil'
+"lua require 'user.linters'
 
 " nvim-cmp settings
 set completeopt=menu,menuone,noselect
