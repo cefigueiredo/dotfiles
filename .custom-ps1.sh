@@ -14,6 +14,42 @@ fi
 
 export GIT_PS1_SHOWUNTRACKEDFILES=yes
 
+PS1_PATH_MAX=30
+PS1_BRANCH_MAX=35
+PS1_BRANCH_HEAD=20
+PS1_BRANCH_TAIL=10
+PS1_LINE_MAX=75
+
+# ~/dev/wrapbook/app/.claude/worktrees/foo -> ~/d/w/a/.c/w/foo
+shorten_path() {
+  local rest="$1" short="" part
+  while [[ $rest == */* ]]; do
+    part="${rest%%/*}"
+    rest="${rest#*/}"
+    if [[ $part == .* ]]; then
+      part="${part:0:2}"
+    else
+      part="${part:0:1}"
+    fi
+    short="$short$part/"
+  done
+  echo "$short$rest"
+}
+
+# keep the first PS1_BRANCH_HEAD and last PS1_BRANCH_TAIL chars of long branches
+shorten_branch() {
+  local name="$1"
+  if [[ ${#name} -gt $PS1_BRANCH_MAX ]]; then
+    name="${name:0:$PS1_BRANCH_HEAD}...${name: -$PS1_BRANCH_TAIL}"
+  fi
+  echo "$name"
+}
+
+# drop zsh (%F{..}) and bash (\[..\]) color codes to measure the visible length
+strip_colors() {
+  echo "$1" | sed -E 's/%F\{[a-z]+\}//g; s/\\\[[^]]*\\\]//g'
+}
+
 # Responsive Prompt
 parse_git_branch() {
   if [[ -n $BASH_VERSION ]] && [[ -f "$DOTFILES_PATH/.git-completion.bash" ]]; then
@@ -25,20 +61,18 @@ parse_git_branch() {
     branch="${ref#refs/heads/}"
   fi
 
-  if [[ `tput cols` -lt 110 ]]; then
-    branch=`echo $branch | sed s/feature/f/1`
-    branch=`echo $branch | sed s/hotfix/h/1`
-    branch=`echo $branch | sed s/release/\r/1`
-
-    branch=`echo $branch | sed s/master/mstr/1`
-    branch=`echo $branch | sed s/develop/dev/1`
+  # __git_ps1 appends state marks after a space ("branch *%"); only shorten the name
+  if [[ $branch == *" "* ]]; then
+    branch="$(shorten_branch "${branch%% *}") ${branch#* }"
+  else
+    branch="$(shorten_branch "$branch")"
   fi
 
   if [[ $branch != "" ]]; then
     if [[ $(git status 2> /dev/null | tail -n1 | grep -F "nothing to commit") ]]; then
       echo -e "${GREEN}$branch${COLOREND} "
     else
-      echo -e "${RED}$branch${COLROEND} "
+      echo -e "${RED}$branch${COLOREND} "
     fi
   fi
 }
@@ -51,30 +85,9 @@ working_directory() {
     in_home=1
   fi
 
-  workingdir=""
-  if [[ `tput cols` -lt 100 ]]; then
-    first="/`echo $dir | cut -d / -f 2`"
-    letter=${first:0:2}
-    if [[ $in_home == 1 ]]; then
-      letter="~$letter"
-    fi
-    proj=`echo $dir | cut -d / -f 3`
-    beginning="$letter/$proj"
-    end=`echo "$dir" | rev | cut -d / -f1 | rev`
-
-    if [[ $proj == "" ]]; then
-      workingdir="$dir"
-    elif [[ $proj == "~" ]]; then
-      workingdir="$dir"
-    elif [[ $dir =~ "$first/$proj"$ ]]; then
-      workingdir="$beginning"
-    elif [[ $dir =~ "$first/$proj/$end"$ ]]; then
-      workingdir="$beginning/$end"
-    else
-      workingdir="$beginning/…/$end"
-    fi
-  else
-    workingdir="$dir"
+  workingdir="$dir"
+  if [[ ${#dir} -gt $PS1_PATH_MAX ]]; then
+    workingdir="$(shorten_path "$dir")"
   fi
 
   echo -e "${YELLOW}$workingdir${COLOREND} "
@@ -109,7 +122,13 @@ bash_prompt() {
     exit_status="${RED}›${COLOREND} "
   fi
 
-  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$ "
+  local body="$(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}"
+  local plain="$(strip_colors "$body")$ "
+  if [[ ${#plain} -gt $PS1_LINE_MAX ]]; then
+    body="$body\n"
+  fi
+
+  PS1="$body$ "
 }
 
 zsh_prompt() {
@@ -119,7 +138,13 @@ zsh_prompt() {
     exit_status="${RED}›${COLOREND} "
   fi
 
-  echo -e "%n $(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$ "
+  local body="%n $(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}"
+  local plain="$USER $(strip_colors "${body#%n }")$ "
+  if [[ ${#plain} -gt $PS1_LINE_MAX ]]; then
+    body="$body\n"
+  fi
+
+  echo -e "$body$ "
 }
 
 if [[ -n $ZSH_VERSION ]]; then
