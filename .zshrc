@@ -48,6 +48,8 @@ alias update_chromedriver="brew update; brew upgrade chromedriver; xattr -d com.
 
 [[ -s "$HOME/.local/bin" ]] && export PATH="$PATH:$HOME/.local/bin"
 
+[[ -s "$HOME/.work.zsh" ]] && source "$HOME/.work.zsh"
+
 if [[ $(uname) == "Darwin" ]]; then
   [ -s "/opt/homebrew/opt/asdf/libexec/asdf.sh" ] && . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
   [ -n "$(brew --prefix postgresql@17)" ] && export PATH="$(brew --prefix postgresql@17)/bin:$PATH"
